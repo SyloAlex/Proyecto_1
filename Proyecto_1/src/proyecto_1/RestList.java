@@ -163,6 +163,18 @@ public class RestList {
         }
     }
     
+    public RestNode searchRestID(String id){
+        RestNode aux = getFirst();
+        for (int i = 0; i < size; i++){
+            if (aux.getRestId().equals(id)){
+                return aux;
+            }else{
+                aux = aux.getNext();
+            }
+        }
+        return null;
+    }
+    
     public void printNamesMenu(){
         if (isEmpty()){
             System.out.println("No hay restaurantes en la base de datos");
