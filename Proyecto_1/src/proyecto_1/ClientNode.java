@@ -2,13 +2,21 @@ package proyecto_1;
 
 public class ClientNode {
     
-    private int id;
+    private String id;
     private String name;
     private String lastName;
     private int dni;
     private ClientNode next;
     
-    public ClientNode(int id, String name, String lastName, int dni){
+    public ClientNode(){
+        this.id = null;
+        this.name = null;
+        this.lastName = null;
+        this.dni = 0;
+        this.next = null;
+    }
+    
+    public ClientNode(String id, String name, String lastName, int dni){
         this.id = id;
         this.name = name;
         this.lastName = lastName;
@@ -48,11 +56,11 @@ public class ClientNode {
         this.next = next;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
     

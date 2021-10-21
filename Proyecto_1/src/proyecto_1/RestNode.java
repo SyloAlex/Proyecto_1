@@ -7,6 +7,13 @@ public class RestNode {
     private FoodList menu;
     private RestNode next;
     
+    public RestNode(){
+        this.restId = null;
+        this.restName = null;
+        this.menu = null;
+        this.next = null;
+    }
+    
     public RestNode(String restId, String restName){
         this.restId = restId;
         this.restName = restName;

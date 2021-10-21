@@ -1,30 +1,30 @@
 package proyecto_1;
 
-public class RestList {
+public class RouteList {
     
-    private RestNode first;
-    private RestNode last;
+    private RouteNode first;
+    private RouteNode last;
     private int size;
     
-    public RestList(){
+    public RouteList(){
         this.first = null;
         this.last = null;
         this.size = 0;
     }
 
-    public RestNode getFirst() {
+    public RouteNode getFirst() {
         return first;
     }
 
-    public void setFirst(RestNode first) {
+    public void setFirst(RouteNode first) {
         this.first = first;
     }
 
-    public RestNode getLast() {
+    public RouteNode getLast() {
         return last;
     }
 
-    public void setLast(RestNode last) {
+    public void setLast(RouteNode last) {
         this.last = last;
     }
 
@@ -40,8 +40,8 @@ public class RestList {
         return first == null;
     }
     
-    public RestNode getNode(int position){
-        RestNode aux = first;
+    public RouteNode getNode(int position){
+        RouteNode aux = first;
         if (position >= size || position < 0){
             return null;
         }else{
@@ -56,60 +56,60 @@ public class RestList {
         return null;
     }
     
-    public void addEmpty(RestNode newRest){
-        first = newRest;
-        last = newRest;
+    public void addEmpty(RouteNode newRoute){
+        first = newRoute;
+        last = newRoute;
         size = size + 1;
     }
     
-    public void addFirst(RestNode newRest){
+    public void addFirst(RouteNode newRoute){
         if (isEmpty()){
-            addEmpty(newRest);
+            addEmpty(newRoute);
         }else{
-            newRest.setNext(first);
-            first = newRest;
+            newRoute.setNext(first);
+            first = newRoute;
             size = size + 1;
         }
     }
     
-    public void addLast(RestNode newRest){
+    public void addLast(RouteNode newRoute){
         if (isEmpty()){
-            addEmpty(newRest);
+            addEmpty(newRoute);
         }else{
-            last.setNext(newRest);
-            last = newRest;
+            last.setNext(newRoute);
+            last = newRoute;
             size = size + 1;
         }
     }
     
-    public void addNode(RestNode newRest, int position){
+    public void addNode(RouteNode newRoute, int position){
         if (isEmpty()){
-            addEmpty(newRest);
+            addEmpty(newRoute);
         }else{
             if (position == 0){
-                addFirst(newRest);
+                addFirst(newRoute);
             }else if(position == size){
-                addLast(newRest);
+                addLast(newRoute);
             }else if (position > size || position < 0){
                 System.out.println("La lista no llega a esa posicion");
             }else{
-                RestNode aux = getNode(position - 1);
-                newRest.setNext(aux.getNext());
-                aux.setNext(newRest);
+                RouteNode aux = getNode(position - 1);
+                newRoute.setNext(aux.getNext());
+                aux.setNext(newRoute);
                 size = size + 1;
             }
         }
     }
     
-    public void addPostPosition(RestNode newRest, int position){
-        addNode(newRest, position + 1);
+    public void addPostPosition(RouteNode newRoute, int position){
+        addNode(newRoute, position + 1);
     }
     
     public void deleteFirst(){
         if (isEmpty()){
             System.out.println("No se puede eliminar, la lista esta vacia");
         }else{
-            RestNode aux = first.getNext();
+            RouteNode aux = first.getNext();
             first = aux;
             size = size - 1;            
         }
@@ -136,7 +136,7 @@ public class RestList {
             }else if (position >= size){
                 System.out.println("La lista no tiene esa posicion");
             }else{
-                RestNode aux = getNode(position - 1);
+                RouteNode aux = getNode(position - 1);
                 aux.setNext(aux.getNext().getNext());
                 size = size - 1;
             }
@@ -151,48 +151,17 @@ public class RestList {
         deleteNode(position + 1);
     }
     
-    public void printNames(){
-        if (isEmpty()){
-            System.out.println("No hay restaurantes en la base de datos");
-        }else{
-            RestNode aux = first;
-            for (int i = 0; i < size; i++){
-                System.out.println(aux.getRestName());
-                aux = aux.getNext();
-            }
-        }
-    }
-    
-    public RestNode searchRestID(String id){
-        RestNode aux = getFirst();
+    public void printRoutes(){
+        RouteNode aux = first;
         for (int i = 0; i < size; i++){
-            if (aux.getRestId().equals(id)){
-                return aux;
-            }else{
-                aux = aux.getNext();
-            }
-        }
-        return null;
-    }
-    
-    public void printNamesMenu(){
-        if (isEmpty()){
-            System.out.println("No hay restaurantes en la base de datos");
-        }else{
-            RestNode aux = first;
-            for (int i = 0; i < size; i++){
-                System.out.println(aux.getRestName());
-                System.out.println(aux.getRestId());
-                System.out.println(">>>>>>>>>>>>>");
-                FoodList aux2 = aux.getMenu();
-                FoodNode aux3 = aux2.getFirst();
-                for (int j = 0; j < aux2.getSize(); j++){
-                    System.out.println(aux3.getFoodName());
-                    aux3 = aux3.getNext();
-                }
-                System.out.println("-----------------");
-                aux = aux.getNext();
-            }
+            System.out.println("Entrada:");
+            System.out.println(aux.getEntrance());
+            System.out.println("Salida:");
+            System.out.println(aux.getExit());
+            System.out.println("Peso:");
+            System.out.println(aux.getWeight());
+            System.out.println("----------------------");
+            aux = aux.getNext();
         }
     }
     
