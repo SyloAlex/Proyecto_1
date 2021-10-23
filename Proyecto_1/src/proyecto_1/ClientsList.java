@@ -151,7 +151,7 @@ public class ClientsList {
         deleteNode(position + 1);
     }
     
-    public void printClients(){
+    public void printClientsName(){
         if (isEmpty()){
             System.out.println("La Lista esta vacia");
         }else{
@@ -163,13 +163,33 @@ public class ClientsList {
         }
     }
     
-    public ClientNode searchClient(int id){
+    public void printClientsInfo(){
+        if (isEmpty()){
+            System.out.println("La Lista esta vacia");
+        }else{
+            ClientNode aux = first;
+            for (int i = 0; i < size; i++){
+                System.out.println("Nombre:");
+                System.out.println(aux.getName());
+                System.out.println("Apellido:");
+                System.out.println(aux.getLastName());
+                System.out.println("ID:");
+                System.out.println(aux.getId());
+                System.out.println("DNI:");
+                System.out.println(aux.getDni());
+                System.out.println("-----------");
+                aux = aux.getNext();
+            }
+        }
+    }
+    
+    public ClientNode searchClient(String id){
         if (isEmpty()){
             return null;
         }else{
            ClientNode aux = first;
            for (int i = 0; i < size; i++){
-               if (aux.getId() == id){
+               if (aux.equals(id)){
                    return aux;
                }else{
                    aux = aux.getNext();
