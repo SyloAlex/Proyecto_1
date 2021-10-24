@@ -44,7 +44,7 @@ public class Functions {
         RouteNode aux = routes.getFirst();
         for (int i = 0; i < routes.getSize(); i++){
             graph.createPath((int)aux.getEntrance(), (int)aux.getExit(), 
-                    (int)aux.getWeight());
+                    aux.getWeight());
             aux = aux.getNext();
         }
     }

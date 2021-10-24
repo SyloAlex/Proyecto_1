@@ -6,11 +6,11 @@ public class Matrix {
     private GraphList last;
     private int size;
     
-    public Matrix(int size){
+    public Matrix(int size, int fill){
         this.first = null;
         this.last = null;
         for (int i = 0; i < size; i++){
-            GraphList newList = new GraphList(size);
+            GraphList newList = new GraphList(size, fill);
             if (first == null){
                 first = newList;
                 last = newList;
@@ -46,16 +46,28 @@ public class Matrix {
         this.size = size;
     }
     
-    public void createPath(int posX, int posY, double num){
+    public GraphList getList(int position){
+        GraphList aux = first;
+        for (int i = 0; i < size; i++){
+            if (i == position){
+                return aux;
+            }else{
+                aux = aux.getNextList();
+            }
+        }
+        return null;
+    }
+    
+    public void createPath(int entrance, int exit, int num){
         GraphList aux = getFirst();
-        if (posY >= size || posY < 0 || posX >= size || posX < 0){
+        if (exit >= size || exit < 0 || entrance >= size || entrance < 0){
             System.out.println("La lista no tiene la posicion indicada");
         }else{
             for (int i = 0; i < size; i++){
-                if (i == posX){
+                if (i == entrance){
                     GraphNode aux2 = aux.getFirst();
                     for (int j = 0; j < aux.getSize(); j++){
-                        if (j == posY){
+                        if (j == exit){
                             aux2.setElement(num);
                         }else{
                             aux2 = aux2.getNext();

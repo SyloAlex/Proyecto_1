@@ -1,25 +1,20 @@
 package proyecto_1;
 
-public class GraphNode {
+public class DijkstraNodeI {
     
-    private GraphNode next;
+    private DijkstraNodeI next;
     private int element;
     
-    public GraphNode(int element){
+    public DijkstraNodeI(int element){
         this.element = element;
         this.next = null;
     }
     
-    public GraphNode(int element, GraphNode next){
-        this.element = element;
-        this.next = next;
-    }
-    
-    public GraphNode getNext(){
+    public DijkstraNodeI getNext(){
         return next;
     }
     
-    public void setNext(GraphNode next){
+    public void setNext(DijkstraNodeI next){
         this.next = next;
     }
     

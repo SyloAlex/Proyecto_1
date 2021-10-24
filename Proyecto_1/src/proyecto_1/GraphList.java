@@ -7,13 +7,12 @@ public class GraphList {
     private GraphList nextList;
     private int size;
     
-    public  GraphList(int size){
+    public  GraphList(int size, int fill){
         this.first = null;
         this.last = null;
         this.nextList = null;
         for (int i = 0; i < size; i++){
-            double inf = Double.POSITIVE_INFINITY;
-            GraphNode newNode = new GraphNode(inf);
+            GraphNode newNode = new GraphNode(fill);
             if (first == null){
                 first = newNode;
                 last = newNode;
