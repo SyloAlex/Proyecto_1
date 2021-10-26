@@ -248,7 +248,11 @@ public class GraphList {
             System.out.println("La lista esta vacia");
         }else{
             for (int i = 0; i < size; i++){
-                System.out.print(aux.getElement());
+                if (aux.getElement() < 1000){
+                    System.out.print(aux.getElement());
+                }else{
+                    System.out.print("INF");
+                }
                 if (i < size - 1){
                     System.out.print("-");
                 }

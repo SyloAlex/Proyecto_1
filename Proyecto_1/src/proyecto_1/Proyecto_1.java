@@ -108,22 +108,23 @@ public class Proyecto_1 {
         routeList.addLast(route18);
         routeList.addLast(route19);
         routeList.addLast(route20);
-//        Functions f = new Functions();
-//        f.changeRoutesEntrance(routeList, clients);
-//        f.changeRoutesExits(routeList, clients);
-        DijkstraAlg dijkstra = new DijkstraAlg();
-        PathNode result = dijkstra.runAlgorithm("A", routeList, "6");
-        System.out.println(result.getDistance());
-        result.printVertexes();
+        Functions f = new Functions();
+        RouteList copyRoutes = f.copyRoutes(routeList);
+        f.changeRoutesEntrance(routeList, clients);
+        f.changeRoutesExits(routeList, clients);
+//        DijkstraAlg dijkstra = new DijkstraAlg();
+//        PathNode result = dijkstra.runAlgorithm("A", copyRoutes, "6");
+//        System.out.println(result.getDistance());
+//        result.printVertexes();
+//        System.out.println("");
 //        routeList.printRoutes();
-//        Matrix adjMatrix = new Matrix(restaurants.getSize()+clients.getSize(), 0);
+//        Matrix adjMatrix = new Matrix(restaurants.getSize()+clients.getSize(), 
+//                9999);
 //        f.fillMatrix(adjMatrix, routeList);
-//        Dijkstra d = new Dijkstra(adjMatrix);
-//        d.dijkstraAlgorithm(adjMatrix, 0);
-//        Matrix wolfMatrix = new Matrix(restaurants.getSize()+clients.getSize(), Integer.MAX_VALUE);
-//        f.fillMatrix(wolfMatrix, routeList);
-//        wolfMatrix.fillDiagonal();
-//        wolfMatrix.printMatrix();
+//        adjMatrix.fillDiagonal();
+//        adjMatrix.printMatrix();
+//        FloydWarshall fl = new FloydWarshall();
+//        fl.runFloydWarshall(adjMatrix);
     }
     
 }

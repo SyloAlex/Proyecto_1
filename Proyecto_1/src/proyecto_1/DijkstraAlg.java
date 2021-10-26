@@ -8,8 +8,8 @@ public class DijkstraAlg {
     
     public PathNode runAlgorithm(String source, RouteList routes, String destiny){
         PathList pathRoutes = new PathList();
-        PathNode firstNode = new PathNode(0, source);
-        pathRoutes.addLast(firstNode);
+        PathNode firstPath = new PathNode(0, source);
+        pathRoutes.addLast(firstPath);
         int nodePosition = 0;
         while (!pathRoutes.getNode(nodePosition).getLastNode().equals(destiny)){
             //Distancia acumulada de la ruta revisada

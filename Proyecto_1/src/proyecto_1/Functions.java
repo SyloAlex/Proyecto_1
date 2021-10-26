@@ -40,6 +40,18 @@ public class Functions {
         }
     }
     
+    public RouteList copyRoutes(RouteList original){
+        RouteNode aux = original.getFirst();
+        RouteList copy = new RouteList();
+        for (int i = 0; i < original.getSize(); i++){
+            RouteNode newRoute = new RouteNode(aux.getEntrance(), aux.getExit(),
+            aux.getWeight());
+            copy.addLast(newRoute);
+            aux = aux.getNext();
+        }
+        return copy;
+    }
+    
     public void fillMatrix(Matrix graph, RouteList routes){
         RouteNode aux = routes.getFirst();
         for (int i = 0; i < routes.getSize(); i++){
