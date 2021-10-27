@@ -9,12 +9,11 @@ public class Functions {
     public void changeRoutesEntrance(RouteList routes, ClientsList clients){
         RouteNode aux = routes.getFirst();
         for (int i = 0; i < routes.getSize(); i++){
-            try{
-                String routeString = String.valueOf(aux.getEntrance());
+            String routeString = String.valueOf(aux.getEntrance());
+            if (Character.isDigit(routeString.charAt(0))){
                 int routeInt = Integer.parseInt(routeString);
                 aux.setEntrance(routeInt - 1);
-            }catch(Exception e){
-                String routeString = String.valueOf(aux.getEntrance());
+            }else{
                 char routeChar = routeString.charAt(0);
                 int routeInt = routeChar;
                 aux.setEntrance(routeInt - 65 + clients.getSize());
@@ -26,12 +25,11 @@ public class Functions {
     public void changeRoutesExits(RouteList routes, ClientsList clients){
         RouteNode aux = routes.getFirst();
         for (int i = 0; i < routes.getSize(); i++){
-            try{
-                String routeString = String.valueOf(aux.getExit());
+            String routeString = String.valueOf(aux.getExit());
+            if (Character.isDigit(routeString.charAt(0))){
                 int routeInt = Integer.parseInt(routeString);
                 aux.setExit(routeInt - 1);
-            }catch(Exception e){
-                String routeString = String.valueOf(aux.getExit());
+            }else{
                 char routeChar = routeString.charAt(0);
                 int routeInt = routeChar;
                 aux.setExit(routeInt - 65 + clients.getSize());
@@ -52,11 +50,13 @@ public class Functions {
         return copy;
     }
     
-    public void fillMatrix(Matrix graph, RouteList routes){
+    public void fillMatrix(Matrix graph, Matrix roads, RouteList routes){
         RouteNode aux = routes.getFirst();
         for (int i = 0; i < routes.getSize(); i++){
             graph.createPath((int)aux.getEntrance(), (int)aux.getExit(), 
                     aux.getWeight());
+            roads.createPath((int)aux.getEntrance(), (int)aux.getExit(), 
+                    (int)aux.getExit());
             aux = aux.getNext();
         }
     }

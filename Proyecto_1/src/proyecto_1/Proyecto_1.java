@@ -142,30 +142,31 @@ public class Proyecto_1 {
         RouteList copyRoutes = f.copyRoutes(routeList);
         f.changeRoutesEntrance(routeList, clients);
         f.changeRoutesExits(routeList, clients);
-        DijkstraAlg dijkstra = new DijkstraAlg();
-        OrderNode aux = orders.getFirst();
-        for (int i = 0; i < orders.getSize(); i++){
-            PathNode result = dijkstra.runAlgorithm(aux.getOrigin(), copyRoutes, aux.getDestiny());
-            System.out.println("Recorrido de la Orden #" + (i + 1));
-            System.out.println(result.getDistance());
-            result.printVertexes();
-            System.out.println("");
-            System.out.println(">>>>>>>>>>>>>>>>>>>>>");
-            aux = aux.getNext();
-        }
-//        PathNode result = dijkstra.runAlgorithm("A", copyRoutes, "6");
-//        System.out.println(result.getDistance());
-//        result.printVertexes();
-//        System.out.println("");
-//        routeList.printRoutes();
-//        Matrix adjMatrix = new Matrix(restaurants.getSize()+clients.getSize(), 
-//                999999999);
-//        f.fillMatrix(adjMatrix, routeList);
-//        adjMatrix.fillDiagonal();
+//        DijkstraAlg dijkstra = new DijkstraAlg();
+//        OrderNode aux = orders.getFirst();
+//        for (int i = 0; i < orders.getSize(); i++){
+//            PathNode result = dijkstra.runAlgorithm(aux.getOrigin(), copyRoutes, aux.getDestiny());
+//            System.out.println("Recorrido de la Orden #" + (i + 1));
+//            System.out.println(result.getDistance());
+//            result.printVertexes();
+//            System.out.println("");
+//            System.out.println(">>>>>>>>>>>>>>>>>>>>>");
+//            aux = aux.getNext();
+//        }
+        Matrix adjMatrix = new Matrix(restaurants.getSize()+clients.getSize(), 
+                999999999);
+        Matrix roads = new Matrix(restaurants.getSize()+clients.getSize(), 999999999);
+        f.fillMatrix(adjMatrix, roads, routeList);
+        adjMatrix.fillDiagonal();
+        roads.fillDiagonalRoads();
+//        roads.printMatrix();
+        
 //        adjMatrix.printMatrix();
-//        FloydWarshall fl = new FloydWarshall();
-//        String stringResult = fl.mentalHealthKiller(adjMatrix);
-//        fl.runFloydWarshall(adjMatrix);
+        FloydWarshall fl = new FloydWarshall();
+        String stringResult = fl.mentalHealthKiller(adjMatrix, roads, 0, 2);
+        System.out.println(stringResult);
+        System.out.println();
+////        fl.runFloydWarshall(adjMatrix);
     }
     
 }

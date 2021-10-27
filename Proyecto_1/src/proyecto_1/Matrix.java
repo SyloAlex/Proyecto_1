@@ -95,6 +95,21 @@ public class Matrix {
         }
     }
     
+    public void fillDiagonalRoads(){
+        GraphList aux = getFirst();
+        for (int i = 0; i < size; i++){
+            GraphNode aux2 = aux.getFirst();
+            for (int j = 0; j < aux.getSize(); j++){
+                if (j == i){
+                    aux2.setElement(i);
+                }else{
+                    aux2 = aux2.getNext();
+                }
+            }
+            aux = aux.getNextList();
+        }
+    }
+    
     public void printMatrix(){
         GraphList aux = getFirst();
         for (int i = 0; i < size; i++){

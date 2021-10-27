@@ -81,6 +81,21 @@ public class StringMatrix {
         }
     }
     
+    public void fillDiagonal(){
+        StringGraphList aux = getFirst();
+        for (int i = 0; i < size; i++){
+            StringNode aux2 = aux.getFirst();
+            for (int j = 0; j < aux.getSize(); j++){
+                if (j == i){
+                    aux2.setNodeName(String.valueOf(i));
+                }else{
+                    aux2 = aux2.getNext();
+                }
+            }
+            aux = aux.getNextList();
+        }
+    }
+    
     public void printMatrix(){
         StringGraphList aux = getFirst();
         for (int i = 0; i < size; i++){
