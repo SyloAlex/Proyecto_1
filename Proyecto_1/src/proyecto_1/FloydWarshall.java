@@ -38,4 +38,76 @@ public class FloydWarshall {
         floyd.printMatrix();
     }
     
+    public String mentalHealthKiller(Matrix graph){
+        int vertex = graph.getSize();
+        Matrix adjMatrix = graph;
+        StringMatrix roads = new StringMatrix(vertex, "");
+        StringMatrix auxRoads = new StringMatrix(vertex, "");
+        String traveledRoad = "", chain = "", anotherRoad = "";
+        int i, j, k;
+        float temp1, temp2, temp3, temp4, minimun;
+        
+        for (k = 0; k < vertex; k++){
+            for (j = 0; j < vertex; j++){
+                for (i = 0; i < vertex; i++){
+                    temp1 = adjMatrix.getList(i).getNodeOrdered(j).getElement();
+                    temp2 = adjMatrix.getList(i).getNodeOrdered(5).getElement();
+                    temp3 = adjMatrix.getList(k).getNodeOrdered(j).getElement();
+                    temp4 = temp2 + temp3;
+                    minimun = Math.min(temp1, temp4);
+//                    if (temp1 != temp4){
+//                        if (minimun == temp4){
+//                            auxRoads.getList(i).getNodeOrdered(j).setNodeName(k + "");
+//                            String aux = roadsR(i, k, auxRoads, traveledRoad);
+//                            roads.getList(i).getNodeOrdered(j).setNodeName(aux  + (k + 1));
+//                        }
+//                    }
+                    adjMatrix.createPath(i, j, (int)minimun);
+                }
+            }
+        }
+        for (i = 0; i < vertex; i++){
+            for (j = 0; j < vertex; j++){
+                chain = chain + "[" + 
+                        adjMatrix.getList(i).getNodeOrdered(j).getElement() + "]";
+            }
+            chain = chain + "\n";
+        }
+        
+        for (i = 0; i < vertex; i++){
+            for (j = 0; j < vertex; j++){
+                if (adjMatrix.getList(i).getNodeOrdered(j).getElement() != 9999){
+                    if (i != j){
+                        if (roads.getList(i).getNode(j).getNodeName().equals("")){
+                            anotherRoad += "De [" + (i+1) + "--->" + (j+1) + 
+                                    "] irse por [" + (i+1) + ", " + (j+1) + 
+                                    "]\n";
+                        }else{
+                            anotherRoad += "De [" + (i+1) + "--->" + (j+1) + 
+                                    "] irse por [" + (i+1) + ", " + 
+                                    roads.getList(i).getNode(j).getNodeName()+ 
+                                    ", " + (j+1) + "]\n";
+                        }
+                    }
+                }
+            }
+        }
+        adjMatrix.printMatrix();
+        return "La matriz es " + chain + ". Los diferentes caminos entre vertices son " 
+                + anotherRoad;
+    }
+    
+    public String roadsR(int i, int k, StringMatrix auxRoads, 
+            String traveledRoad){
+        if (auxRoads.getList(i).getNode(k).getNodeName().equals("")){
+            return "";
+        }else{
+            traveledRoad += roadsR(i, 
+                    Integer.parseInt(auxRoads.getList(i).getNode(k).getNodeName()) + 1, 
+                    auxRoads, traveledRoad) + 
+                    (Integer.parseInt(auxRoads.getList(i).getNode(k).getNodeName()) + 1)
+                    + ", ";
+        }
+        return traveledRoad;
+    }
 }
