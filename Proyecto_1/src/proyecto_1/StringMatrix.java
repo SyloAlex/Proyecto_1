@@ -1,16 +1,17 @@
+
 package proyecto_1;
 
-public class Matrix {
+public class StringMatrix {
     
-    private GraphList first;
-    private GraphList last;
+    private StringGraphList first;
+    private StringGraphList last;
     private int size;
     
-    public Matrix(int size, int fill){
+    public StringMatrix(int size, String fill){
         this.first = null;
         this.last = null;
         for (int i = 0; i < size; i++){
-            GraphList newList = new GraphList(size, fill);
+            StringGraphList newList = new StringGraphList(size, fill);
             if (first == null){
                 first = newList;
                 last = newList;
@@ -22,19 +23,19 @@ public class Matrix {
         this.size = size;
     }
 
-    public GraphList getFirst() {
+    public StringGraphList getFirst() {
         return first;
     }
 
-    public void setFirst(GraphList first) {
+    public void setFirst(StringGraphList first) {
         this.first = first;
     }
 
-    public GraphList getLast() {
+    public StringGraphList getLast() {
         return last;
     }
 
-    public void setLast(GraphList last) {
+    public void setLast(StringGraphList last) {
         this.last = last;
     }
 
@@ -46,8 +47,8 @@ public class Matrix {
         this.size = size;
     }
     
-    public GraphList getList(int position){
-        GraphList aux = first;
+    public StringGraphList getList(int position){
+        StringGraphList aux = first;
         for (int i = 0; i < size; i++){
             if (i == position){
                 return aux;
@@ -58,17 +59,17 @@ public class Matrix {
         return null;
     }
     
-    public void createPath(int entrance, int exit, int num){
-        GraphList aux = getFirst();
+    public void createPath(int entrance, int exit, String word){
+        StringGraphList aux = getFirst();
         if (exit >= size || exit < 0 || entrance >= size || entrance < 0){
             System.out.println("La lista no tiene la posicion indicada");
         }else{
             for (int i = 0; i < size; i++){
                 if (i == entrance){
-                    GraphNode aux2 = aux.getFirst();
+                    StringNode aux2 = aux.getFirst();
                     for (int j = 0; j < aux.getSize(); j++){
                         if (j == exit){
-                            aux2.setElement(num);
+                            aux2.setNodeName(word);
                         }else{
                             aux2 = aux2.getNext();
                         }
@@ -81,27 +82,12 @@ public class Matrix {
     }
     
     public void fillDiagonal(){
-        GraphList aux = getFirst();
+        StringGraphList aux = getFirst();
         for (int i = 0; i < size; i++){
-            GraphNode aux2 = aux.getFirst();
+            StringNode aux2 = aux.getFirst();
             for (int j = 0; j < aux.getSize(); j++){
                 if (j == i){
-                    aux2.setElement(0);
-                }else{
-                    aux2 = aux2.getNext();
-                }
-            }
-            aux = aux.getNextList();
-        }
-    }
-    
-    public void fillDiagonalRoads(){
-        GraphList aux = getFirst();
-        for (int i = 0; i < size; i++){
-            GraphNode aux2 = aux.getFirst();
-            for (int j = 0; j < aux.getSize(); j++){
-                if (j == i){
-                    aux2.setElement(i);
+                    aux2.setNodeName(String.valueOf(i));
                 }else{
                     aux2 = aux2.getNext();
                 }
@@ -111,7 +97,7 @@ public class Matrix {
     }
     
     public void printMatrix(){
-        GraphList aux = getFirst();
+        StringGraphList aux = getFirst();
         for (int i = 0; i < size; i++){
             aux.printList();
             System.out.println("");

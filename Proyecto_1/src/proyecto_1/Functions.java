@@ -1,5 +1,10 @@
 package proyecto_1;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.PrintWriter;
+
 public class Functions {
     
     public Functions(){
@@ -7,174 +12,254 @@ public class Functions {
     }
     
     public void changeRoutesEntrance(RouteList routes, ClientsList clients){
-        RouteNode aux = routes.getFirst();
+        RouteNode clientAux = routes.getFirst();
         for (int i = 0; i < routes.getSize(); i++){
-            try{
-                String routeString = String.valueOf(aux.getEntrance());
+            String routeString = String.valueOf(clientAux.getEntrance());
+            if (Character.isDigit(routeString.charAt(0))){
                 int routeInt = Integer.parseInt(routeString);
-                aux.setEntrance(routeInt - 1);
-            }catch(Exception e){
-                String routeString = String.valueOf(aux.getEntrance());
+                clientAux.setEntrance(routeInt - 1);
+            }else{
                 char routeChar = routeString.charAt(0);
                 int routeInt = routeChar;
-                aux.setEntrance(routeInt - 65 + clients.getSize());
+                clientAux.setEntrance(routeInt - 65 + clients.getSize());
             }
-            aux = aux.getNext();
+            clientAux = clientAux.getNext();
         }
     }
     
     public void changeRoutesExits(RouteList routes, ClientsList clients){
-        RouteNode aux = routes.getFirst();
+        RouteNode clientAux = routes.getFirst();
         for (int i = 0; i < routes.getSize(); i++){
-            try{
-                String routeString = String.valueOf(aux.getExit());
+            String routeString = String.valueOf(clientAux.getExit());
+            if (Character.isDigit(routeString.charAt(0))){
                 int routeInt = Integer.parseInt(routeString);
-                aux.setExit(routeInt - 1);
-            }catch(Exception e){
-                String routeString = String.valueOf(aux.getExit());
+                clientAux.setExit(routeInt - 1);
+            }else{
                 char routeChar = routeString.charAt(0);
                 int routeInt = routeChar;
-                aux.setExit(routeInt - 65 + clients.getSize());
+                clientAux.setExit(routeInt - 65 + clients.getSize());
             }
-            aux = aux.getNext();
+            clientAux = clientAux.getNext();
         }
     }
     
-    public void fillMatrix(Matrix graph, RouteList routes){
-        RouteNode aux = routes.getFirst();
+    public RouteList copyRoutes(RouteList original){
+        RouteNode clientAux = original.getFirst();
+        RouteList copy = new RouteList();
+        for (int i = 0; i < original.getSize(); i++){
+            RouteNode newRoute = new RouteNode(clientAux.getEntrance(), clientAux.getExit(),
+            clientAux.getWeight());
+            copy.addLast(newRoute);
+            clientAux = clientAux.getNext();
+        }
+        return copy;
+    }
+    
+    public int changeRoadStringInt(Object road, ClientsList clients){
+        String roadString = String.valueOf(road);
+        if (Character.isDigit(roadString.charAt(0))){
+            int roadInt = Integer.parseInt(roadString);
+            return roadInt - 1;
+        }else{
+            char roadChar = roadString.charAt(0);
+            int roadInt = roadChar;
+            return roadInt - 65 + clients.getSize();
+        }
+    }
+    
+    public String changeRoadIntString(int road, ClientsList clients){
+        String result;
+        if (road < clients.getSize()){
+            result = String.valueOf(road + 1);
+        }else{
+            result = String.valueOf((char)(road + 65 - clients.getSize()));
+        }
+        return result;
+    }
+    
+    public void fillMatrix(Matrix graph, Matrix roads, RouteList routes, ClientsList clients){
+        RouteNode clientAux = routes.getFirst();
         for (int i = 0; i < routes.getSize(); i++){
-            graph.createPath((int)aux.getEntrance(), (int)aux.getExit(), 
-                    (int)aux.getWeight());
-            aux = aux.getNext();
+            int entrance = changeRoadStringInt(clientAux.getEntrance(), clients);
+            int exit = changeRoadStringInt(clientAux.getExit(), clients);
+            graph.createPath(entrance, exit, 
+                    clientAux.getWeight());
+            roads.createPath(entrance, exit, 
+                    exit);
+            clientAux = clientAux.getNext();
         }
     }
     
-//    public void changeRoutesEntrance(RouteList routes, ClientsList clients){
-//        RouteNode aux = routes.getFirst();
-//        for (int i = 0; i < routes.getSize(); i++){
-//            if (aux.getEntrance() == "A"){
-//                aux.setEntrance(clients.getSize());
-//            }else if (aux.getEntrance() == "B"){
-//                aux.setEntrance(clients.getSize() + 1);
-//            }else if (aux.getEntrance() == "C"){
-//                aux.setEntrance(clients.getSize() + 2);
-//            }else if (aux.getEntrance() == "D"){
-//                aux.setEntrance(clients.getSize() + 3);
-//            }else if (aux.getEntrance() == "E"){
-//                aux.setEntrance(clients.getSize() + 4);
-//            }else if (aux.getEntrance() == "F"){
-//                aux.setEntrance(clients.getSize() + 5);
-//            }else if (aux.getEntrance() == "G"){
-//                aux.setEntrance(clients.getSize() + 6);
-//            }else if (aux.getEntrance() == "H"){
-//                aux.setEntrance(clients.getSize() + 7);
-//            }else if (aux.getEntrance() == "I"){
-//                aux.setEntrance(clients.getSize() + 8);
-//            }else if (aux.getEntrance() == "J"){
-//                aux.setEntrance(clients.getSize() + 9);
-//            }else if (aux.getEntrance() == "K"){
-//                aux.setEntrance(clients.getSize() + 10);
-//            }else if (aux.getEntrance() == "L"){
-//                aux.setEntrance(clients.getSize() + 11);
-//            }else if (aux.getEntrance() == "M"){
-//                aux.setEntrance(clients.getSize() + 12);
-//            }else if (aux.getEntrance() == "N"){
-//                aux.setEntrance(clients.getSize() + 13);
-//            }else if (aux.getEntrance() == "O"){
-//                aux.setEntrance(clients.getSize() + 14);
-//            }else if (aux.getEntrance() == "P"){
-//                aux.setEntrance(clients.getSize() + 15);
-//            }else if (aux.getEntrance() == "Q"){
-//                aux.setEntrance(clients.getSize() + 16);
-//            }else if (aux.getEntrance() == "R"){
-//                aux.setEntrance(clients.getSize() + 17);
-//            }else if (aux.getEntrance() == "S"){
-//                aux.setEntrance(clients.getSize() + 18);
-//            }else if (aux.getEntrance() == "T"){
-//                aux.setEntrance(clients.getSize() + 19);
-//            }else if (aux.getEntrance() == "U"){
-//                aux.setEntrance(clients.getSize() + 20);
-//            }else if (aux.getEntrance() == "V"){
-//                aux.setEntrance(clients.getSize() + 21);
-//            }else if (aux.getEntrance() == "W"){
-//                aux.setEntrance(clients.getSize() + 22);
-//            }else if (aux.getEntrance() == "X"){
-//                aux.setEntrance(clients.getSize() + 23);
-//            }else if (aux.getEntrance() == "Y"){
-//                aux.setEntrance(clients.getSize() + 24);
-//            }else if (aux.getEntrance() == "Z"){
-//                aux.setEntrance(clients.getSize() + 25);
-//            }else{
-//                String routeString = String.valueOf(aux.getEntrance());
-//                int routeInt = Integer.parseInt(routeString);
-//                aux.setEntrance(routeInt - 1);
-//            }
-//            aux = aux.getNext();
-//        }
-//    }
-//    
-//    public void changeRoutesExits(RouteList routes, ClientsList clients){
-//        RouteNode aux = routes.getFirst();
-//        for (int i = 0; i < routes.getSize(); i++){
-//            if (aux.getExit()== "A"){
-//                aux.setExit(clients.getSize());
-//            }else if (aux.getExit() == "B"){
-//                aux.setExit(clients.getSize() + 1);
-//            }else if (aux.getExit() == "C"){
-//                aux.setExit(clients.getSize() + 2);
-//            }else if (aux.getExit() == "D"){
-//                aux.setExit(clients.getSize() + 3);
-//            }else if (aux.getExit() == "E"){
-//                aux.setExit(clients.getSize() + 4);
-//            }else if (aux.getExit() == "F"){
-//                aux.setExit(clients.getSize() + 5);
-//            }else if (aux.getExit() == "G"){
-//                aux.setExit(clients.getSize() + 6);
-//            }else if (aux.getExit() == "H"){
-//                aux.setExit(clients.getSize() + 7);
-//            }else if (aux.getExit() == "I"){
-//                aux.setExit(clients.getSize() + 8);
-//            }else if (aux.getExit() == "J"){
-//                aux.setExit(clients.getSize() + 9);
-//            }else if (aux.getExit() == "K"){
-//                aux.setExit(clients.getSize() + 10);
-//            }else if (aux.getExit() == "L"){
-//                aux.setExit(clients.getSize() + 11);
-//            }else if (aux.getExit() == "M"){
-//                aux.setExit(clients.getSize() + 12);
-//            }else if (aux.getExit() == "N"){
-//                aux.setExit(clients.getSize() + 13);
-//            }else if (aux.getExit() == "O"){
-//                aux.setExit(clients.getSize() + 14);
-//            }else if (aux.getExit() == "P"){
-//                aux.setExit(clients.getSize() + 15);
-//            }else if (aux.getExit() == "Q"){
-//                aux.setExit(clients.getSize() + 16);
-//            }else if (aux.getExit() == "R"){
-//                aux.setExit(clients.getSize() + 17);
-//            }else if (aux.getExit() == "S"){
-//                aux.setExit(clients.getSize() + 18);
-//            }else if (aux.getExit() == "T"){
-//                aux.setExit(clients.getSize() + 19);
-//            }else if (aux.getExit() == "U"){
-//                aux.setExit(clients.getSize() + 20);
-//            }else if (aux.getExit() == "V"){
-//                aux.setExit(clients.getSize() + 21);
-//            }else if (aux.getExit() == "W"){
-//                aux.setExit(clients.getSize() + 22);
-//            }else if (aux.getExit() == "X"){
-//                aux.setExit(clients.getSize() + 23);
-//            }else if (aux.getExit() == "Y"){
-//                aux.setExit(clients.getSize() + 24);
-//            }else if (aux.getExit() == "Z"){
-//                aux.setExit(clients.getSize() + 25);
-//            }else{
-//                String routeString = String.valueOf(aux.getExit());
-//                int routeInt = Integer.parseInt(routeString);
-//                aux.setExit(routeInt - 1);
-//            }
-//            aux = aux.getNext();
-//        }
-//    }
+    public SamanInfo readTXT(String TXTpath){
+        String samancitoTXT = "";
+        String line;
+        SamanInfo infoSaman = new SamanInfo();
+        TXTpath = "test\\samancito.txt";
+        File file = new File(TXTpath);
+        try{
+            if (!file.exists()){
+                file.createNewFile();
+            }else{
+                FileReader fr = new FileReader(file);
+                BufferedReader br = new BufferedReader(fr);
+                while ((line = br.readLine()) != null){
+                    if (!line.isEmpty()){
+                        samancitoTXT += line + "\n";
+                    }
+                }
+                String[] samanInfo = samancitoTXT.split("\n");
+                String flag = "Restaurantes";
+                RestList restaurants = new RestList();
+                ClientsList clients = new ClientsList();
+                OrderList orders = new OrderList();
+                RouteList routes = new RouteList();
+                for (int i = 0; i < samanInfo.length; i++){
+                    if (flag.equals("Restaurantes")){
+                        if (!samanInfo[i].equals("Clientes")){
+                            if (samanInfo[i].equals("Restaurantes")){
+                                continue;
+                            }else{
+                                String[] restInfo = samanInfo[i].split(",");
+                                RestNode newRest = new RestNode();
+                                newRest.setRestId(restInfo[0]);
+                                newRest.setRestName(restInfo[1]);
+                                FoodList menu = new FoodList();
+                                String[] menuInfo = restInfo[2].split("/");
+                                for (int j = 0; j < menuInfo.length; j++){
+                                    FoodNode food = new FoodNode(menuInfo[j]);
+                                    menu.addLast(food);
+                                }
+                                newRest.setMenu(menu);
+                                restaurants.addLast(newRest);
+                            }
+                        }else{
+                            flag = "Clientes";
+                        }
+                    }else if (flag.equals("Clientes")){
+                        if (!samanInfo[i].equals("Pedidos")){
+                            String[] clientInfo = samanInfo[i].split(",");
+                            ClientNode newClient = new ClientNode();
+                            newClient.setId(clientInfo[0]);
+                            newClient.setName(clientInfo[1]);
+                            newClient.setLastName(clientInfo[2]);
+                            newClient.setDni(Integer.valueOf(clientInfo[3]));
+                            clients.addLast(newClient);
+                        }else{
+                            flag = "Pedidos";
+                        }
+                    }else if (flag.equals("Pedidos")){
+                        if (!samanInfo[i].equals("Rutas")){
+                            String[] orderInfo = samanInfo[i].split(",");
+                            OrderNode newOrder = new OrderNode();
+                            newOrder.setOrigin(orderInfo[1]);
+                            newOrder.setDestiny(orderInfo[0]);
+                            FoodList orderFood = new FoodList();
+                            String[] orderMenu = orderInfo[2].split("/");
+                            for (int k = 0; k < orderMenu.length; k++){
+                                String[] foodSplit = orderMenu[k].split("-");
+                                FoodNode foodOrder = new FoodNode(foodSplit[1],
+                                    Integer.valueOf(foodSplit[0]));
+                                orderFood.addLast(foodOrder);
+                            }
+                            newOrder.setOrder(orderFood);
+                            orders.addLast(newOrder);
+                        }else{
+                            flag = "Rutas";
+                        }
+                    }else if (flag.equals("Rutas")){
+                        if (!samanInfo[i].equals("Rutas")){
+                            String[] routeInfo = samanInfo[i].split(",");
+                            RouteNode newRoute = new RouteNode();
+                            newRoute.setEntrance(routeInfo[0]);
+                            newRoute.setExit(routeInfo[1]);
+                            newRoute.setWeight(Integer.valueOf(routeInfo[2]));
+                            routes.addLast(newRoute);
+                        }
+                    }
+                }
+                if (restaurants.isEmpty() || clients.isEmpty() || orders.isEmpty() || routes.isEmpty()){
+                    System.out.println("Me mori");
+                    return null;
+                }
+                infoSaman.setRestaurants(restaurants);
+                infoSaman.setClients(clients);
+                infoSaman.setOrders(orders);
+                infoSaman.setRoutes(routes);
+            }
+            return infoSaman;
+        }catch (Exception e){
+            System.out.println("Me mori");
+            return null;
+        }
+    }
     
+    public void writeTXT(RestList restaurants, ClientsList clients, 
+            OrderList orders, RouteList routes, String txtPath){
+        String txtString = "";
+        txtString += "Restaurantes" + "\n";
+        RestNode restAux = restaurants.getFirst();
+        for (int i = 0; i < restaurants.getSize(); i++){
+            String rest = "";
+            rest += restAux.getRestId() + ",";
+            rest += restAux.getRestName()+ ",";
+            String foodString = "";
+            FoodNode food = restAux.getMenu().getFirst();
+            for (int j = 0; j < restAux.getMenu().getSize(); j++){
+                foodString += food.getFoodName() + "/";
+                food = food.getNext();
+            }
+            foodString = foodString.substring(0, foodString.length() - 1);
+            rest += foodString + "\n";
+            txtString += rest;
+            restAux = restAux.getNext();
+        }
+        txtString += "Clientes" + "\n";
+        ClientNode clientAux = clients.getFirst();
+        for (int i = 0; i < clients.getSize(); i++){
+            String client = "";
+            client += clientAux.getId() + ",";
+            client += clientAux.getName() + ",";
+            client += clientAux.getLastName() + ",";
+            client += clientAux.getDni() + "\n";
+            txtString += client;
+            clientAux = clientAux.getNext();
+        }
+        txtString += "Pedidos" + "\n";
+        OrderNode orderAux = orders.getFirst();
+        for (int i = 0; i < orders.getSize(); i++){
+            String order = "";
+            order += orderAux.getDestiny() + ",";
+            order += orderAux.getOrigin() + ",";
+            String menuString = "";
+            FoodNode menu = orderAux.getOrder().getFirst();
+            for (int j = 0; j < orderAux.getOrder().getSize(); j++){
+                menuString += menu.getQuantity() + "-";
+                menuString += menu.getFoodName() + "/";
+                menu = menu.getNext();
+            }
+            menuString = menuString.substring(0, menuString.length() - 1);
+            order += menuString + "\n";
+            txtString += order;
+            orderAux = orderAux.getNext();
+        }
+        txtString += "Rutas" + "\n";
+        RouteNode routeAux = routes.getFirst();
+        for (int i = 0; i < routes.getSize(); i++){
+            String route = "";
+            route += routeAux.getEntrance() + ",";
+            route += routeAux.getExit() + ",";
+            route += routeAux.getWeight() + "\n";
+            txtString += route;
+            routeAux = routeAux.getNext();
+        }
+        txtString = txtString.substring(0, txtString.length() - 1);
+        try{
+            PrintWriter pw = new PrintWriter(txtPath);
+            pw.write(txtString);
+            pw.close();
+            System.out.println("No me mori");
+        }catch (Exception e){
+            System.out.println("Me mori");
+        }
+    }
 }

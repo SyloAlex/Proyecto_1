@@ -3,14 +3,14 @@ package proyecto_1;
 public class GraphNode {
     
     private GraphNode next;
-    private double element;
+    private int element;
     
-    public GraphNode(double element){
+    public GraphNode(int element){
         this.element = element;
         this.next = null;
     }
     
-    public GraphNode(double element, GraphNode next){
+    public GraphNode(int element, GraphNode next){
         this.element = element;
         this.next = next;
     }
@@ -23,11 +23,11 @@ public class GraphNode {
         this.next = next;
     }
     
-    public double getElement(){
+    public int getElement(){
         return element;
     }
     
-    public void setElement(double element){
+    public void setElement(int element){
         this.element = element;
     }
     

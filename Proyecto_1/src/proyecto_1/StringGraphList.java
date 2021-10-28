@@ -1,18 +1,18 @@
 package proyecto_1;
 
-public class GraphList {
+public class StringGraphList {
     
-    private GraphNode first;
-    private GraphNode last;
-    private GraphList nextList;
+    private StringNode first;
+    private StringNode last;
+    private StringGraphList nextList;
     private int size;
     
-    public  GraphList(int size, int fill){
+    public  StringGraphList(int size, String fill){
         this.first = null;
         this.last = null;
         this.nextList = null;
         for (int i = 0; i < size; i++){
-            GraphNode newNode = new GraphNode(fill);
+            StringNode newNode = new StringNode(fill);
             if (first == null){
                 first = newNode;
                 last = newNode;
@@ -24,27 +24,27 @@ public class GraphList {
         this.size = size;
     }
     
-    public GraphNode getFirst(){
+    public StringNode getFirst(){
         return first;
     }
     
-    public void setFirst(GraphNode newFirst){
+    public void setFirst(StringNode newFirst){
         this.first = newFirst;
     }
     
-    public GraphNode getLast(){
+    public StringNode getLast(){
         return last;
     }
     
-    public void setLast(GraphNode newLast){
+    public void setLast(StringNode newLast){
         this.first = newLast;
     }
     
-    public GraphList getNextList(){
+    public StringGraphList getNextList(){
         return nextList;
     }
     
-    public void setNextList(GraphList newNextList){
+    public void setNextList(StringGraphList newNextList){
         this.nextList = newNextList;
     }
     
@@ -67,8 +67,8 @@ public class GraphList {
     }
     
     //Search Nodes and Indez
-    public GraphNode getNode(int position){
-        GraphNode aux = first;
+    public StringNode getNode(int position){
+        StringNode aux = first;
         if (position == 0){
             return aux;
         }else{
@@ -83,8 +83,8 @@ public class GraphList {
         return null;
     }
     
-    public GraphNode getNodeOrdered(int position){
-        GraphNode aux = first;
+    public StringNode getNodeOrdered(int position){
+        StringNode aux = first;
             for (int i = 0; i < size; i++){
                 if (i == position){
                     return aux;
@@ -95,33 +95,9 @@ public class GraphList {
         return null;
     }
     
-    public Object getIndex(int element){
-        GraphNode aux = first;
-        for (int i = 0; i < size; i++){
-            if (aux.getElement() == element){
-                return i;
-            }else{
-                aux = aux.getNext();
-            }
-        }
-        return null;
-    }
-    
-    public boolean searchElement(int element){
-        GraphNode aux = first;
-        for (int i = 0; i < size; i++){
-            if (aux.getElement() == element){
-                return true;
-            }else{
-                aux = aux.getNext();
-            }
-        }
-        return false;
-    }
-    
     //Adding Nodes in various positions
-    public void addFirst(int element){
-        GraphNode newNode = new GraphNode(element);
+    public void addFirst(String element){
+        StringNode newNode = new StringNode(element);
         if (isEmpty()){
             addEmpty(element);
         }else{
@@ -131,8 +107,8 @@ public class GraphList {
         }
     }
     
-    public void addLast(int element){
-        GraphNode newNode = new GraphNode(element);
+    public void addLast(String element){
+        StringNode newNode = new StringNode(element);
         if (isEmpty()){
             addEmpty(element);
         }else{
@@ -142,15 +118,15 @@ public class GraphList {
         }
     }
     
-    public void addEmpty(int element){
-        GraphNode newNode = new GraphNode(element);
+    public void addEmpty(String element){
+        StringNode newNode = new StringNode(element);
         first = newNode;
         last = newNode;
         size = size + 1;
     }
     
-    public void addNode(int element, int position){
-        GraphNode newNode = new GraphNode(element);
+    public void addNode(String element, int position){
+        StringNode newNode = new StringNode(element);
         if (isEmpty()){
             addEmpty(element);
         }else{
@@ -161,7 +137,7 @@ public class GraphList {
             }else if (position > size || position < 0){
                 System.out.println("La lista no llega a esa posicion");
             }else{
-                GraphNode aux = getNodeOrdered(position - 1);
+                StringNode aux = getNodeOrdered(position - 1);
                 newNode.setNext(aux.getNext());
                 aux.setNext(newNode);
                 size = size + 1;
@@ -169,29 +145,8 @@ public class GraphList {
         }
     }
     
-    public void addPostPosition(int element, int position){
+    public void addPostPosition(String element, int position){
         addNode(element, position + 1);
-    }
-    
-    public void addOrdered(int element){
-        GraphNode aux = first;
-        boolean flag = false;
-        if (isEmpty()){
-            addFirst(element);
-        }else{
-            for (int i = 0; i < size; i++){
-                if (aux.getElement() < element){
-                    addNode(element, i);
-                    flag = true;
-                    break;
-                }else{
-                    aux = aux.getNext();
-                }
-            }
-            if (!flag){
-                addLast(element);
-            }
-        }
     }
 
     //Delete nodes in various locations
@@ -199,7 +154,7 @@ public class GraphList {
         if (isEmpty()){
             System.out.println("No se puede eliminar, la lista esta vacia");
         }else{
-            GraphNode aux = first.getNext();
+            StringNode aux = first.getNext();
             first = aux;
             size = size - 1;            
         }
@@ -226,7 +181,7 @@ public class GraphList {
             }else if (position >= size){
                 System.out.println("La lista no tiene esa posicion");
             }else{
-                GraphNode aux = getNodeOrdered(position - 1);
+                StringNode aux = getNodeOrdered(position - 1);
                 aux.setNext(aux.getNext().getNext());
                 size = size - 1;
             }
@@ -243,16 +198,12 @@ public class GraphList {
     
     //Print all nodes
     public void printList(){
-        GraphNode aux = first;
+        StringNode aux = first;
         if (isEmpty()){
             System.out.println("La lista esta vacia");
         }else{
             for (int i = 0; i < size; i++){
-                if (aux.getElement() < 1000){
-                    System.out.print(aux.getElement());
-                }else{
-                    System.out.print("INF");
-                }
+                System.out.print(aux.getNodeName());
                 if (i < size - 1){
                     System.out.print("-");
                 }
