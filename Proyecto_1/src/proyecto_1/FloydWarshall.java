@@ -6,43 +6,11 @@ public class FloydWarshall {
         
     }
     
-    public Matrix duplicateMatrix(Matrix graph){
-        Matrix floydWarshall = new Matrix(graph.getSize(), 0);
-        int i, j;
-        for (i = 0; i < graph.getSize(); i++){
-            for (j = 0; j < graph.getSize(); j++){
-                floydWarshall.getList(i).getNodeOrdered(j).setElement(
-                        graph.getList(i).getNodeOrdered(j).getElement());
-            }
-        }
-        return floydWarshall;
-    }
-    
-    public void runFloydWarshall(Matrix graph){
-        Matrix floyd = duplicateMatrix(graph);
-        int i, j, k;
-        for (k = 0; k < floyd.getSize(); k++){
-            for (j = 0; j < floyd.getSize(); j++){
-                for (i = 0; i < floyd.getSize(); i++){
-                    if (floyd.getList(i).getNodeOrdered(k).getElement() + 
-                            floyd.getList(k).getNodeOrdered(j).getElement() < 
-                            floyd.getList(i).getNodeOrdered(j).getElement()){
-                        
-                        floyd.getList(i).getNode(j).setElement(
-                            floyd.getList(i).getNodeOrdered(k).getElement() + 
-                            floyd.getList(k).getNodeOrdered(j).getElement());
-                    }
-                }
-            }
-        }
-        floyd.printMatrix();
-    }
-    
-    public String mentalHealthKiller(Matrix graph, Matrix roads, int source, int destiny){
+    public String runAlgorithm(Matrix graph, Matrix roads, ClientsList clients, int source, int destiny){
         int vertex = graph.getSize();
         Matrix adjMatrix = graph;
         int i, j, k;
-        float temp1, temp2, temp3, temp4, minimun;
+        float temp1, temp2, temp3, temp4;
         
         for (k = 0; k < vertex; k++){
             for (i = 0; i < vertex; i++){
@@ -62,25 +30,12 @@ public class FloydWarshall {
         if (roads.getList(source).getNodeOrdered(destiny).getElement() > 99999){
             return null;
         }
-        String painKillers = String.valueOf(source);
+        Functions f = new Functions();
+        String orderRoute = String.valueOf(f.changeRoadIntString(source, clients));
         while(source != destiny){
             source = roads.getList(source).getNodeOrdered(destiny).getElement();
-            painKillers += " - " + source;
+            orderRoute += "-" + String.valueOf(f.changeRoadIntString(source, clients));
         }
-        return painKillers;
-    }
-    
-    public String roadsR(int i, int k, StringMatrix auxRoads, 
-            String traveledRoad){
-        if (auxRoads.getList(i).getNode(k).getNodeName().equals("")){
-            return "";
-        }else{
-            traveledRoad += roadsR(i, 
-                    Integer.parseInt(auxRoads.getList(i).getNode(k).getNodeName()) + 1, 
-                    auxRoads, traveledRoad) + 
-                    (Integer.parseInt(auxRoads.getList(i).getNode(k).getNodeName()) + 1)
-                    + ", ";
-        }
-        return traveledRoad;
+        return orderRoute;
     }
 }

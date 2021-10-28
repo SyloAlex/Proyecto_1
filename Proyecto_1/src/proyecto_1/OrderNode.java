@@ -7,6 +7,13 @@ public class OrderNode {
     private FoodList order;
     private OrderNode next;
     
+    public OrderNode(){
+        this.origin = null;
+        this.destiny = null;
+        this.order = null;
+        this.next = null;
+    }
+    
     public OrderNode(String origin, String destiny){
         this.origin = origin;
         this.destiny = destiny;
