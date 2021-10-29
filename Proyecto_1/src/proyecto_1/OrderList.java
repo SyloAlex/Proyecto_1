@@ -170,4 +170,23 @@ public class OrderList {
         }
     }
     
+    public String ordersToString(){
+        OrderNode aux = first;
+        String orderString = "";
+        for (int i = 0; i < size; i++){
+            orderString += "Orden #" + (i + 1) + " ";
+            orderString += "Origen: " + aux.getOrigin();
+            orderString += " Destino: " + aux.getDestiny() + " Orden:";
+            FoodNode menuAux = aux.getOrder().getFirst();
+            for (int j = 0; j < aux.getOrder().getSize(); j++){
+                orderString += " " + menuAux.getQuantity() + "- " +
+                        menuAux.getFoodName();
+                menuAux = menuAux.getNext();
+            }
+            orderString += "\n";
+            aux = aux.getNext();
+        }
+        return orderString;
+    }
+    
 }

@@ -69,4 +69,17 @@ public class PathNode {
         }
     }
     
+    public String vertexesToString(){
+        StringNode aux = vertexes.getFirst();
+        String resultString = "";
+        for (int i = 0; i < vertexes.getSize(); i++){
+            resultString += aux.getNodeName();
+            if (i < vertexes.getSize() - 1){
+                resultString += "-";
+            }
+            aux = aux.getNext();
+        }
+        return resultString;
+    }
+    
 }
