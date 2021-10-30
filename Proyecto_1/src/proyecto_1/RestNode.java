@@ -60,4 +60,18 @@ public class RestNode {
         this.restId = restId;
     }
     
+    public String searchFoodWithID(int id){
+        String result = "";
+        FoodNode aux = menu.getFirst();
+        for (int i = 0; i < menu.getSize(); i++){
+            if ((id - 1) == i){
+                result += aux.getFoodName();
+                break;
+            }else{
+                aux = aux.getNext();
+            }
+        }
+        return result;
+    }
+    
 }

@@ -163,13 +163,27 @@ public class RestList {
         }
     }
     
-    public RestNode searchRestID(String id){
+    public boolean searchRestID(String id){
         RestNode aux = getFirst();
+        boolean flag = false;
         for (int i = 0; i < size; i++){
             if (aux.getRestId().equals(id)){
-                return aux;
+                flag = true;
+                break;
             }else{
                 aux = aux.getNext();
+            }
+        }
+        return flag;
+    }
+    
+    public RestNode getRestaurant(String id){
+        RestNode aux = getFirst();
+        for (int i = 0; i < size; i++){
+            if (!id.equals(aux.getRestId())){
+                aux = aux.getNext();
+            }else{
+                return aux;
             }
         }
         return null;
@@ -194,6 +208,36 @@ public class RestList {
                 aux = aux.getNext();
             }
         }
+    }
+    
+    public String restToString(){
+        String result = "";
+        RestNode aux = first;
+        for (int i = 0; i < size; i++){
+            result += "ID: " + aux.getRestId();
+            result += " Nombre: " + aux.getRestName() + "\n";
+            aux = aux.getNext();
+        }
+        return result;
+    }
+    
+    public String foodToString(String restID){
+        String result = "";
+        RestNode aux = first;
+        for (int i = 0; i < size; i++){
+            FoodNode auxFood = aux.getMenu().getFirst();
+            if (aux.getRestId().equals(restID)){
+                for (int j = 0; j < aux.getMenu().getSize(); j++){
+                    result += "ID: " + (j + 1);
+                    result += " Plato: " + auxFood.getFoodName() + "\n";
+                    auxFood = auxFood.getNext();
+                }
+                break;
+            }else{
+                aux = aux.getNext();
+            }
+        }
+        return result;
     }
     
 }

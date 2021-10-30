@@ -60,4 +60,18 @@ public class OrderNode {
         this.next = next;
     }
     
+    public String displayOrder(){
+        String result = "ID Origen: " + this.origin + " ID Destino: " 
+                + this.destiny + "\n";
+        if (this.order != null){
+            FoodNode aux = this.order.getFirst();
+            for (int i = 0; i < this.order.getSize(); i++){
+                result += "Plato: " + aux.getFoodName();
+                result += " Cantidad: " + aux.getQuantity() + "\n";
+                aux = aux.getNext();
+            }
+        }
+        return result;
+    }
+    
 }
