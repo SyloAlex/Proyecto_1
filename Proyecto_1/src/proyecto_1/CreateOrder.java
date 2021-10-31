@@ -201,24 +201,29 @@ public class CreateOrder extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try{
-            if (!this.jTextField3.getText().isEmpty() 
-                    || !this.jTextField1.getText().isEmpty()){
-                int foodID = Integer.parseInt(this.jTextField3.getText());
-                int foodQuantity = Integer.parseInt(this.jTextField1.getText());
-                String foodName = this.restaurant.searchFoodWithID(foodID);
-                FoodNode newFood = new FoodNode(foodName, foodQuantity);
-                if (this.order.getOrder() == null){
-                    FoodList newList = new FoodList();
-                    newList.addLast(newFood);
-                    this.order.setOrder(newList);
-                    this.jTextArea1.setText(this.order.displayOrder());
+            if (this.restaurant != null){
+                if (!this.jTextField3.getText().isEmpty() 
+                        || !this.jTextField1.getText().isEmpty()){
+                    int foodID = Integer.parseInt(this.jTextField3.getText());
+                    int foodQuantity = Integer.parseInt(this.jTextField1.getText());
+                    String foodName = this.restaurant.searchFoodWithID(foodID);
+                    FoodNode newFood = new FoodNode(foodName, foodQuantity);
+                    if (this.order.getOrder() == null){
+                        FoodList newList = new FoodList();
+                        newList.addLast(newFood);
+                        this.order.setOrder(newList);
+                        this.jTextArea1.setText(this.order.displayOrder());
+                    }else{
+                        this.order.getOrder().addLast(newFood);
+                        this.jTextArea1.setText(this.order.displayOrder());
+                    }
                 }else{
-                    this.order.getOrder().addLast(newFood);
-                    this.jTextArea1.setText(this.order.displayOrder());
+                    JOptionPane.showMessageDialog(rootPane, "Debe rellenar los "
+                            + "campos de plato y cantidad");
                 }
             }else{
-                JOptionPane.showMessageDialog(rootPane, "Debe rellenar los "
-                        + "campos de plato y cantidad");
+                JOptionPane.showMessageDialog(rootPane, "Debe seleccionar un"
+                        + "restaurant de la lista");
             }
         }catch (Exception e){
             JOptionPane.showMessageDialog(rootPane, "El ID ingresado no "
@@ -228,7 +233,13 @@ public class CreateOrder extends javax.swing.JFrame {
 
     private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
         char c = evt.getKeyChar();
-        if (Character.isDigit(c)){
+        if (Character.isAlphabetic(c)){
+            if (Character.isLowerCase(c)){
+                evt.consume();
+            }else if (this.jTextField2.getText().length() == 1){
+                evt.consume();
+            }
+        }else{
             evt.consume();
         }
     }//GEN-LAST:event_jTextField2KeyTyped
@@ -276,9 +287,14 @@ public class CreateOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.upload.getInfo().getOrders().addLast(this.order);
-        this.setVisible(false);
-        this.dispose();
+        if (this.order != null){
+            this.upload.getInfo().getOrders().addLast(this.order);
+            this.setVisible(false);
+            this.dispose();
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "De rellenar los datos"
+                    + " indicados para realizar un pedido");
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
