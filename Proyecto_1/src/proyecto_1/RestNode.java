@@ -74,4 +74,18 @@ public class RestNode {
         return result;
     }
     
+    public String restToString(){
+        String result = "";
+        result += "Nombre: " + this.restName;
+        result += " ID: " + this.restId + "\n";
+        if (this.menu != null){
+            FoodNode aux = this.menu.getFirst();
+            for (int i = 0; i < this.menu.getSize(); i++){
+                result += "Plato #" + (i + 1) + " " + aux.getFoodName() + "\n";
+                aux = aux.getNext();
+            }
+        }
+        return result;
+    }
+    
 }

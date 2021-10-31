@@ -221,7 +221,8 @@ public class CreateOrder extends javax.swing.JFrame {
                         + "campos de plato y cantidad");
             }
         }catch (Exception e){
-            JOptionPane.showMessageDialog(rootPane, "Me mori");
+            JOptionPane.showMessageDialog(rootPane, "El ID ingresado no "
+                    + "concuerda con los platos en el menu");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
