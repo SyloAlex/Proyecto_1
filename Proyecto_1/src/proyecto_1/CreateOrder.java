@@ -222,7 +222,7 @@ public class CreateOrder extends javax.swing.JFrame {
                             + "campos de plato y cantidad");
                 }
             }else{
-                JOptionPane.showMessageDialog(rootPane, "Debe seleccionar un"
+                JOptionPane.showMessageDialog(rootPane, "Debe seleccionar un "
                         + "restaurant de la lista");
             }
         }catch (Exception e){

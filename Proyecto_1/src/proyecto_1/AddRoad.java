@@ -245,7 +245,7 @@ public class AddRoad extends javax.swing.JFrame {
             }
         }else{
             JOptionPane.showMessageDialog(rootPane, "La ruta seleccionada no "
-                    + "son validas");
+                    + "es valida");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

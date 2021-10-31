@@ -11,26 +11,26 @@ import javax.swing.JOptionPane;
  *
  * @author Alex
  */
-public class AddDish extends javax.swing.JFrame {
+public class DeleteDish extends javax.swing.JFrame {
 
     /**
-     * Creates new form AddDish
+     * Creates new form DeleteDish
      */
     private DataUpload uploadWindow;
     private RestNode rest;
     
-    public AddDish() {
+    public DeleteDish() {
         this.uploadWindow = null;
         this.rest = null;
         initComponents();
-        this.jTextArea2.setText(this.uploadWindow.getInfo().getRestaurants().restToString());
+        this.jTextArea3.setText(this.uploadWindow.getInfo().getRestaurants().restToString());
     }
     
-    public AddDish(DataUpload uploadWindow) {
+    public DeleteDish(DataUpload uploadWindow) {
         this.uploadWindow = uploadWindow;
         this.rest = null;
         initComponents();
-        this.jTextArea2.setText(this.uploadWindow.getInfo().getRestaurants().restToString());
+        this.jTextArea3.setText(this.uploadWindow.getInfo().getRestaurants().restToString());
     }
 
     /**
@@ -43,43 +43,43 @@ public class AddDish extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextArea3 = new javax.swing.JTextArea();
+        jLabel10 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setText("Samancito Delivery");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
-
-        jLabel3.setText("Paso 1. Busque el restaurant");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel4.setText("Samancito Delivery");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, -1, -1));
 
         jTextArea2.setEditable(false);
         jTextArea2.setColumns(20);
         jTextArea2.setRows(5);
         jScrollPane2.setViewportView(jTextArea2);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 240, 130));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 90, 260, 130));
 
         jLabel5.setText("Paso 2. Ingrese el ID del restaurant");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, -1, -1));
 
-        jLabel7.setText("ID del restaurant:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, -1, -1));
+        jLabel7.setText("ID del plato:");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 280, -1, -1));
 
         jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -87,7 +87,7 @@ public class AddDish extends javax.swing.JFrame {
                 jTextField2KeyTyped(evt);
             }
         });
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, 40, 30));
+        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 270, 40, 30));
 
         jButton3.setText("Seleccionar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -95,36 +95,44 @@ public class AddDish extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 270, -1, 30));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, -1, 30));
 
-        jLabel8.setText("Nombre del plato:");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, -1, -1));
+        jLabel9.setText("Paso 4. Ingrese el ID del plato");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 240, -1, -1));
+
+        jTextArea3.setEditable(false);
+        jTextArea3.setColumns(20);
+        jTextArea3.setRows(5);
+        jScrollPane3.setViewportView(jTextArea3);
+
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 250, 130));
+
+        jLabel10.setText("Paso 3. Busque el plato del menu");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 60, -1, -1));
+
+        jLabel8.setText("ID del restaurant:");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, -1, -1));
 
         jTextField3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
-            }
-        });
         jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextField3KeyTyped(evt);
             }
         });
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, 140, 30));
+        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, 40, 30));
 
-        jLabel9.setText("Paso 4.Ingrese el nombre del plato");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, -1, -1));
-
-        jButton1.setText("Agregar");
+        jButton1.setText("Eliminar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 400, 90, 40));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 270, 90, 30));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 460));
+        jLabel3.setText("Paso 1. Busque el restaurant");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 330));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -132,31 +140,30 @@ public class AddDish extends javax.swing.JFrame {
     private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
         char c = evt.getKeyChar();
         if (Character.isAlphabetic(c)){
-            if (Character.isLowerCase(c)){
-                evt.consume();
-            }else if (this.jTextField2.getText().length() == 1){
+            evt.consume();
+        }else{
+            if (this.jTextField2.getText().length() == 1){
                 evt.consume();
             }
-        }else{
-            evt.consume();
         }
     }//GEN-LAST:event_jTextField2KeyTyped
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         SamanInfo info = this.uploadWindow.getInfo();
-        String restID = this.jTextField2.getText().toUpperCase();
+        String restID = this.jTextField3.getText().toUpperCase();
         if (this.rest == null){
             if (!restID.isEmpty()){
                 if (info.getRestaurants().searchRestID(restID)){
                     RestNode rest = info.getRestaurants().getRestaurant(restID);
                     this.rest = rest;
+                    this.jTextArea2.setText(this.rest.restToString());
                 }else{
                     JOptionPane.showMessageDialog(rootPane, "El ID ingresado no "
-                            + "existe en nuestra base de datos");
+                        + "existe en nuestra base de datos");
                 }
             }else{
                 JOptionPane.showMessageDialog(rootPane, "Debe ingresar el ID de "
-                        + "un restaurant");
+                    + "un restaurant");
             }
         }else{
             JOptionPane.showMessageDialog(rootPane, "Ya selecciono un restaurant");
@@ -164,25 +171,30 @@ public class AddDish extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyTyped
-
+        char c = evt.getKeyChar();
+        if (Character.isAlphabetic(c)){
+            if (Character.isLowerCase(c)){
+                evt.consume();
+            }else if (this.jTextField3.getText().length() == 1){
+                evt.consume();
+            }
+        }else{
+            evt.consume();
+        }
     }//GEN-LAST:event_jTextField3KeyTyped
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if (!this.jTextField3.getText().isEmpty()){
-            this.rest.getMenu().addLast(new FoodNode(this.jTextField3.getText()));
-            JOptionPane.showMessageDialog(rootPane, "Registro exitoso");
-            this.uploadWindow.getInfo().getRestaurants().printNamesMenu();
+        try{
+            int position = Integer.parseInt(this.jTextField2.getText());
+            this.rest.getMenu().deleteNode(position - 1);
+            JOptionPane.showMessageDialog(rootPane, "Plato Eliminado!");
             this.setVisible(false);
             this.dispose();
-        }else{
-            JOptionPane.showMessageDialog(rootPane, "Debe ingresar el nombre"
-                    + "del plato");
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(rootPane, "El plato seleccionado no "
+                    + "es valido");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -201,20 +213,20 @@ public class AddDish extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AddDish.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DeleteDish.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AddDish.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DeleteDish.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AddDish.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DeleteDish.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AddDish.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DeleteDish.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddDish().setVisible(true);
+                new DeleteDish().setVisible(true);
             }
         });
     }
@@ -222,15 +234,18 @@ public class AddDish extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JTextArea jTextArea3;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
