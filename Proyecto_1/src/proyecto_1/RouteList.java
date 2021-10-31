@@ -151,6 +151,34 @@ public class RouteList {
         deleteNode(position + 1);
     }
     
+    public boolean searchEntrance(String entrance){
+        RouteNode aux = first;
+        boolean flag = false;
+        for (int i = 0; i < size; i++){
+            if (entrance.equals(aux.getEntrance())){
+                flag = true;
+                break;
+            }else{
+                aux = aux.getNext();
+            }
+        }
+        return flag;
+    }
+    
+    public boolean searchExit(String exit){
+        RouteNode aux = first;
+        boolean flag = false;
+        for (int i = 0; i < size; i++){
+            if (exit.equals(aux.getExit())){
+                flag = true;
+                break;
+            }else{
+                aux = aux.getNext();
+            }
+        }
+        return flag;
+    }
+    
     public void printRoutes(){
         RouteNode aux = first;
         for (int i = 0; i < size; i++){

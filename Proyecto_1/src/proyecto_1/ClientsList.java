@@ -183,20 +183,38 @@ public class ClientsList {
         }
     }
     
-    public ClientNode searchClient(String id){
+    public String clientsToString(){
         if (isEmpty()){
-            return null;
+            return "No hay clientes registrados";
+        }else{
+            String result = "";
+            ClientNode aux = first;
+            for (int i = 0; i < size; i++){
+                result += "ID: " + (i+1) + " ";
+                result += "Nombre: " + aux.getName() + " ";
+                result += "Apellido: " + aux.getLastName() + " ";
+                result += "DNI: " + aux.getDni() + "\n";
+                aux = aux.getNext();
+            }
+            return result;
+        }
+    }
+    
+    public boolean searchClientID(String id){
+        boolean flag = false;
+        if (isEmpty()){
+            return flag;
         }else{
            ClientNode aux = first;
            for (int i = 0; i < size; i++){
-               if (aux.equals(id)){
-                   return aux;
+               if (aux.getId().equals(id)){
+                   flag = true;
+                   break;
                }else{
                    aux = aux.getNext();
                }
            }
         }
-        return null;
+        return flag;
     }
-    
 }

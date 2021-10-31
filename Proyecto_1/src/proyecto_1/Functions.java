@@ -94,7 +94,6 @@ public class Functions {
         String samancitoTXT = "";
         String line;
         SamanInfo infoSaman = new SamanInfo();
-        TXTpath = "test\\samancito.txt";
         File file = new File(TXTpath);
         try{
             if (!file.exists()){
@@ -188,7 +187,6 @@ public class Functions {
             }
             return infoSaman;
         }catch (Exception e){
-            System.out.println("Me mori");
             return null;
         }
     }
