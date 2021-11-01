@@ -24,14 +24,18 @@ public class AddDish extends javax.swing.JFrame {
         this.uploadWindow = null;
         this.rest = null;
         initComponents();
-        this.jTextArea2.setText(this.uploadWindow.getInfo().getRestaurants().restToString());
+        this.jTextArea2.setText(
+                this.uploadWindow.getInfo().getRestaurants().restToString());
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
     
     public AddDish(DataUpload uploadWindow) {
         this.uploadWindow = uploadWindow;
         this.rest = null;
         initComponents();
-        this.jTextArea2.setText(this.uploadWindow.getInfo().getRestaurants().restToString());
+        this.jTextArea2.setText(
+                this.uploadWindow.getInfo().getRestaurants().restToString());
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -172,6 +176,12 @@ public class AddDish extends javax.swing.JFrame {
         if (!this.jTextField3.getText().isEmpty()){
             this.rest.getMenu().addLast(new FoodNode(this.jTextField3.getText()));
             JOptionPane.showMessageDialog(rootPane, "Registro exitoso");
+            Functions f = new Functions();
+            f.writeTXT(this.uploadWindow.getInfo().getRestaurants(), 
+                    this.uploadWindow.getInfo().getClients(), 
+                    this.uploadWindow.getInfo().getOrders(), 
+                    this.uploadWindow.getInfo().getRoutes(), 
+                    this.uploadWindow.getInfo().getPathTXT());
             this.setVisible(false);
             this.dispose();
         }else{

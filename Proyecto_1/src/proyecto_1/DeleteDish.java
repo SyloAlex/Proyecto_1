@@ -24,14 +24,18 @@ public class DeleteDish extends javax.swing.JFrame {
         this.uploadWindow = null;
         this.rest = null;
         initComponents();
-        this.jTextArea3.setText(this.uploadWindow.getInfo().getRestaurants().restToString());
+        this.jTextArea3.setText(
+                this.uploadWindow.getInfo().getRestaurants().restToString());
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
     
     public DeleteDish(DataUpload uploadWindow) {
         this.uploadWindow = uploadWindow;
         this.rest = null;
         initComponents();
-        this.jTextArea3.setText(this.uploadWindow.getInfo().getRestaurants().restToString());
+        this.jTextArea3.setText(
+                this.uploadWindow.getInfo().getRestaurants().restToString());
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -189,6 +193,12 @@ public class DeleteDish extends javax.swing.JFrame {
             int position = Integer.parseInt(this.jTextField2.getText());
             this.rest.getMenu().deleteNode(position - 1);
             JOptionPane.showMessageDialog(rootPane, "Plato Eliminado!");
+            Functions f = new Functions();
+            f.writeTXT(this.uploadWindow.getInfo().getRestaurants(), 
+                        this.uploadWindow.getInfo().getClients(), 
+                        this.uploadWindow.getInfo().getOrders(), 
+                        this.uploadWindow.getInfo().getRoutes(), 
+                        this.uploadWindow.getInfo().getPathTXT());
             this.setVisible(false);
             this.dispose();
         }catch (Exception e){

@@ -272,4 +272,28 @@ public class RouteList {
         return flag;
     }
     
+    /**
+     * Funcion que verifica si la ruta ya existe en la base de datos
+     * @param source {String} entrada de una ruta
+     * @param destiny {String} salida de una ruta
+     * @return flag {boolean} true si existe la ruta y false si no existe
+     */
+    public boolean checkRoute(String source, String destiny){
+        boolean flag = false;
+        RouteNode aux = first;
+        for (int i = 0; i < this.size; i++){
+            if (aux.getEntrance().equals(source)){
+                if (aux.getExit().equals(destiny)){
+                    flag = true;
+                    break;
+                }else{
+                    aux = aux.getNext();
+                }
+            }else{
+                aux = aux.getNext();
+            }
+        }
+        return flag;
+    }
+    
 }

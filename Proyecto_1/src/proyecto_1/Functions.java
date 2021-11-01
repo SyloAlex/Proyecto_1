@@ -185,6 +185,7 @@ public class Functions {
                 infoSaman.setClients(clients);
                 infoSaman.setOrders(orders);
                 infoSaman.setRoutes(routes);
+                infoSaman.setPathTXT(TXTpath);
             }
             return infoSaman;
         }catch (Exception e){

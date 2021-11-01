@@ -21,11 +21,13 @@ public class AddRoad extends javax.swing.JFrame {
     public AddRoad() {
         this.uploadWindow = null;
         initComponents();
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
     
     public AddRoad(DataUpload uploadWindow) {
         this.uploadWindow = uploadWindow;
         initComponents();
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -233,13 +235,24 @@ public class AddRoad extends javax.swing.JFrame {
                         + "realizamos envios a lugares tan lejanos");
             }else{
                 if (!route1en.equals(route1ex)){
-                    RouteNode newRoute1 = new RouteNode(route1en, 
-                        route1ex, route1w);
-                    this.uploadWindow.getInfo().getRoutes().addLast(newRoute1);
-                    JOptionPane.showMessageDialog(rootPane, "Registro de Ruta "
-                            + "exitoso");
-                    this.setVisible(false);
-                    this.dispose();
+                    if (!this.uploadWindow.getInfo().getRoutes().checkRoute(route1en, route1ex)){
+                        RouteNode newRoute1 = new RouteNode(route1en, 
+                            route1ex, route1w);
+                        this.uploadWindow.getInfo().getRoutes().addLast(newRoute1);
+                        JOptionPane.showMessageDialog(rootPane, "Registro de Ruta "
+                                + "exitoso");
+                        Functions f = new Functions();
+                        f.writeTXT(this.uploadWindow.getInfo().getRestaurants(), 
+                                this.uploadWindow.getInfo().getClients(), 
+                                this.uploadWindow.getInfo().getOrders(), 
+                                this.uploadWindow.getInfo().getRoutes(), 
+                                this.uploadWindow.getInfo().getPathTXT());
+                        this.setVisible(false);
+                        this.dispose();
+                    }else{
+                        JOptionPane.showMessageDialog(rootPane, "La ruta "
+                                + "ingresada ya existe");
+                    }
                 }
             }
         }else{

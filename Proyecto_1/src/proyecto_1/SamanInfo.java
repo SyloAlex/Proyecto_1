@@ -10,6 +10,7 @@ public class SamanInfo {
     private ClientsList clients;
     private OrderList orders;
     private RouteList routes;
+    private String pathTXT;
     
     /**
      * Constructor de la clase SamanInfo sin parametros
@@ -19,6 +20,7 @@ public class SamanInfo {
         this.clients = null;
         this.orders = null;
         this.routes = null;
+        this.pathTXT = "";
     }
 
     /**
@@ -83,6 +85,22 @@ public class SamanInfo {
      */
     public void setRoutes(RouteList routes) {
         this.routes = routes;
+    }
+
+    /**
+     * Getter de la ruta del archivo TXT
+     * @return pathTXT {String} ruta del archivo TXT
+     */
+    public String getPathTXT() {
+        return pathTXT;
+    }
+
+    /**
+     * Setter de la ruta del archivo TXT
+     * @param pathTXT {String} ruta del archivo TXT
+     */
+    public void setPathTXT(String pathTXT) {
+        this.pathTXT = pathTXT;
     }
     
 }
