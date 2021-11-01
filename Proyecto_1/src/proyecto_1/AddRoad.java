@@ -8,7 +8,7 @@ package proyecto_1;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Ventana para añadir una nueva ruta a la plataforma Samancito Delivery
  * @author Alex
  */
 public class AddRoad extends javax.swing.JFrame {

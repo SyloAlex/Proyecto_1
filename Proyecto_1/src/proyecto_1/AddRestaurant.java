@@ -8,7 +8,7 @@ package proyecto_1;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Ventana para añadir un nuevo restaurante a la plataforma Samancito Delivery
  * @author Alex
  */
 public class AddRestaurant extends javax.swing.JFrame {

@@ -10,7 +10,8 @@ import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Ventana para que el cliente agregue una nueva orden en la plataforma 
+ * Samancito Delivery
  * @author Alex
  */
 public class CreateOrder extends javax.swing.JFrame {

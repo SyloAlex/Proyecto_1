@@ -8,7 +8,8 @@ package proyecto_1;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Ventana para eliminar un plato de un restaurante de la plataforma Samancito 
+ * Delivery.
  * @author Alex
  */
 public class DeleteDish extends javax.swing.JFrame {

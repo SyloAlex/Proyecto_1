@@ -1,11 +1,31 @@
 package proyecto_1;
 
+/**
+ * Clase que contiene la funcion para correr el algoritmo de Dijkstra
+ * @author Alex
+ */
 public class DijkstraAlg {
     
+    /**
+     * Constructor de la clase Dijkstra sin parametros
+     */
     public DijkstraAlg(){
         
     }
     
+    /**
+     * Algoritmo de Dijkstra que permite calcular el camino mas corto. Similar 
+     * a una busqueda por amplitud, el algoritmo evalua todas las rutas que 
+     * tienen como entrada (origen) la salida de la ruta evaluada previamente.
+     * En cada iteracion se evalua cual de las rutas recorridas tiene la menor 
+     * distancia acumulada y esa se evalua en la siguiente iteracion.
+     * @param source {String} Vertice inicial desde el cual se quiere calcular 
+     * el camino mas corto
+     * @param routes {RouteList} Lista de rutas de la plataforma.
+     * @param destiny {String} Vertice final desde el cual se quiere calcular el 
+     * camino mas corto
+     * @return {PathNode} Nodo que contiene el camino con la distancia mas corta
+     */
     public PathNode runAlgorithm(String source, RouteList routes, String destiny){
         PathList pathRoutes = new PathList();
         PathNode firstPath = new PathNode(0, source);

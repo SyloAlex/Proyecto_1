@@ -1,11 +1,33 @@
 package proyecto_1;
 
+/**
+ * Clase que contiene el algoritmo para correr Floyd-Warshall y obtener la 
+ * distancia y el camino mas corto
+ * @author Alex
+ */
 public class FloydWarshall {
     
+    /**
+     * Constructor de la clase FloydWarshall sin parametros
+     */
     public FloydWarshall(){
         
     }
     
+    /**
+     * Funcion que modifica la Matriz de Adyacencia de enteros para obtener 
+     * la distancia mas corta entre todos los vertices. En cada iteracion se 
+     * evalua si la suma de los pesos de dos rutas es menor a la de una tercera 
+     * ruta. De ser asi, se sobreescribe con el valor menor en la Matriz de 
+     * enteros y se coloca la nueva salida en ese nodo pero de la Matriz de 
+     * caminos
+     * @param graph {Matrix} Matriz de adyacencia de enteros con los pesos
+     * @param roads {Matrix} Matriz de adyacencia de enteros con los caminos
+     * @param clients {ClientsList} Lista de clientes de la plataforma
+     * @param source {int} origen desde el cual sale el camino mas corto
+     * @param destiny {int} destino al cual llega el camino mas corto
+     * @return orderRoute {String} cadena que contiene la ruta mas corta
+     */
     public String runAlgorithm(Matrix graph, Matrix roads, ClientsList clients, int source, int destiny){
         int vertex = graph.getSize();
         Matrix adjMatrix = graph;
