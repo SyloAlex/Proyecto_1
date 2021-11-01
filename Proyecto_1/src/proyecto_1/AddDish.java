@@ -171,7 +171,6 @@ public class AddDish extends javax.swing.JFrame {
         if (!this.jTextField3.getText().isEmpty()){
             this.rest.getMenu().addLast(new FoodNode(this.jTextField3.getText()));
             JOptionPane.showMessageDialog(rootPane, "Registro exitoso");
-            this.uploadWindow.getInfo().getRestaurants().printNamesMenu();
             this.setVisible(false);
             this.dispose();
         }else{

@@ -238,7 +238,6 @@ public class AddRoad extends javax.swing.JFrame {
                     this.uploadWindow.getInfo().getRoutes().addLast(newRoute1);
                     JOptionPane.showMessageDialog(rootPane, "Registro de Ruta "
                             + "exitoso");
-                    this.uploadWindow.getInfo().getRoutes().printRoutes();
                     this.setVisible(false);
                     this.dispose();
                 }
