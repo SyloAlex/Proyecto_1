@@ -1,5 +1,9 @@
 package proyecto_1;
 
+/**
+ * Lista de nodos para la construccion de la MAtrix Adyacente del grafo.
+ * @author Alex
+ */
 public class GraphList {
     
     private GraphNode first;
@@ -7,6 +11,12 @@ public class GraphList {
     private GraphList nextList;
     private int size;
     
+    /**
+     * Constructor de la lista GraphList con parametros de tamaño y entero 
+     * con el cual se llena la matriz.
+     * @param size {int} tamaño de la lista
+     * @param fill {int} entero con el cual se llena la matriz
+     */
     public  GraphList(int size, int fill){
         this.first = null;
         this.last = null;
@@ -24,38 +34,73 @@ public class GraphList {
         this.size = size;
     }
     
+    /**
+     * Getter del primer nodo de la lista
+     * @return first {GraphNode} primer nodo de la lista
+     */
     public GraphNode getFirst(){
         return first;
     }
     
+    /**
+     * Setter del primer nodo de la lista
+     * @param newFirst {GraphNode} primer nodo de la lista
+     */
     public void setFirst(GraphNode newFirst){
         this.first = newFirst;
     }
     
+    /**
+     * Getter del ultimo nodo de la lista
+     * @return last {GraphNode} primer nodo de la lista
+     */
     public GraphNode getLast(){
         return last;
     }
     
+    /**
+     * Setter del ultimo nodo de la lista
+     * @param newLast {GraphNode} ultimo nodo de la lista
+     */
     public void setLast(GraphNode newLast){
         this.first = newLast;
     }
     
+    /**
+     * Getter de la siguiente lista de la matriz
+     * @return nextList {GraphList} siguiente lista de la matriz
+     */
     public GraphList getNextList(){
         return nextList;
     }
     
+    /**
+     * Getter de la siguiente lista de la matriz
+     * @param newNextList {GraphList} siguiente lista de la matriz
+     */
     public void setNextList(GraphList newNextList){
         this.nextList = newNextList;
     }
     
+    /**
+     * Getter del tamaño de la lista
+     * @return size {int} tamaño de la lista
+     */
     public int getSize(){
         return size;
     }
     
+    /**
+     * Verifica si la lista tiene o no elementos
+     * @return {boolean} true si la lista esta vacia, false si tiene elementos
+     */
     public boolean isEmpty(){
         return first == null;
     }
     
+    /**
+     * Deconstructor de la lista
+     */
     public void emptyList(){
         while (isEmpty() == false){
             deleteFirst();
@@ -65,8 +110,13 @@ public class GraphList {
             }
         }
     }
-    
-    //Search Nodes and Indez
+
+    /**
+     * Busca el siguiente nodo en la lista, segun la posicion 
+     * pasada por parametro
+     * @param position {int} posicion del nodo a buscar
+     * @return {GraphNode} nodo en la posicion buscada
+     */
     public GraphNode getNode(int position){
         GraphNode aux = first;
         if (position == 0){
@@ -83,6 +133,11 @@ public class GraphList {
         return null;
     }
     
+    /**
+     * Busca un nodo en la lista, segun la posicion pasada por parametro
+     * @param position {int} posicion del nodo a buscar
+     * @return {GraphNode} nodo en la posicion buscada
+     */
     public GraphNode getNodeOrdered(int position){
         GraphNode aux = first;
             for (int i = 0; i < size; i++){
@@ -94,32 +149,12 @@ public class GraphList {
             }
         return null;
     }
-    
-    public Object getIndex(int element){
-        GraphNode aux = first;
-        for (int i = 0; i < size; i++){
-            if (aux.getElement() == element){
-                return i;
-            }else{
-                aux = aux.getNext();
-            }
-        }
-        return null;
-    }
-    
-    public boolean searchElement(int element){
-        GraphNode aux = first;
-        for (int i = 0; i < size; i++){
-            if (aux.getElement() == element){
-                return true;
-            }else{
-                aux = aux.getNext();
-            }
-        }
-        return false;
-    }
-    
-    //Adding Nodes in various positions
+
+    /**
+     * Añade un nuevo {GraphNode} a la lista en la primera posicion
+     * @param element {int} entero que se almacenara en el nodo para luego 
+     * anexar a la lista
+     */
     public void addFirst(int element){
         GraphNode newNode = new GraphNode(element);
         if (isEmpty()){
@@ -131,6 +166,11 @@ public class GraphList {
         }
     }
     
+    /**
+     * Añade un nuevo {GraphNode} a la lista en la ultima posicion
+     * @param element {int} entero que se almacenara en el nodo para luego 
+     * anexar a la lista
+     */
     public void addLast(int element){
         GraphNode newNode = new GraphNode(element);
         if (isEmpty()){
@@ -142,6 +182,11 @@ public class GraphList {
         }
     }
     
+    /**
+     * Añade un nuevo {GraphNode} a la lista si esta vacia
+     * @param element {int} entero que se almacenara en el nodo para luego 
+     * anexar a la lista
+     */
     public void addEmpty(int element){
         GraphNode newNode = new GraphNode(element);
         first = newNode;
@@ -149,6 +194,12 @@ public class GraphList {
         size = size + 1;
     }
     
+    /**
+     * Añade un nuevo {GraphNode} a la lista en la posicion indicada
+     * @param element {int} entero que se almacenara en el nodo para luego 
+     * anexar a la lista
+     * @param position {int} posicion en la cual se va a añadir el nodo
+     */
     public void addNode(int element, int position){
         GraphNode newNode = new GraphNode(element);
         if (isEmpty()){
@@ -169,10 +220,21 @@ public class GraphList {
         }
     }
     
+    /**
+     * Añade un nuevo {GraphNode} a la lista despues de la posicion indicada
+     * @param element {int} entero que se almacenara en el nodo para luego 
+     * anexar a la lista
+     * @param position {int} posicion en la cual se va a añadir el nodo
+     */
     public void addPostPosition(int element, int position){
         addNode(element, position + 1);
     }
     
+    /**
+     * Añade un nuevo {GraphNode} a la lista en orden ascendente
+     * @param element {int} entero que se almacenara en el nodo para luego 
+     * anexar a la lista
+     */
     public void addOrdered(int element){
         GraphNode aux = first;
         boolean flag = false;
@@ -194,7 +256,9 @@ public class GraphList {
         }
     }
 
-    //Delete nodes in various locations
+    /**
+     * Elimina el primer nodo de la lista
+     */
     public void deleteFirst(){
         if (isEmpty()){
             System.out.println("No se puede eliminar, la lista esta vacia");
@@ -205,6 +269,9 @@ public class GraphList {
         }
     }
     
+    /**
+     * Elimina el ultimo nodo de la lista
+     */
     public void deleteLast(){
         if (isEmpty()){
             System.out.println("No se puede eliminar, la lista esta vacia");
@@ -215,6 +282,10 @@ public class GraphList {
         }
     }
     
+    /**
+     * Elimina el nodo en la posicion indicada por parametro
+     * @param position posicion en la cual se va a eliminar el nodo
+     */
     public void deleteNode(int position){
         if (isEmpty()){
             System.out.println("La lista esta vacia");
@@ -233,15 +304,25 @@ public class GraphList {
         }
     }
     
+    /**
+     * Elimina el nodo una posicion antes de la indicada por parametro
+     * @param position posicion en la cual se va a eliminar el nodo
+     */
     public void deletePrePosition(int position){
         deleteNode(position - 1);
     }
     
+    /**
+     * Elimina el nodo una posicion despues de la indicada por parametro
+     * @param position posicion en la cual se va a eliminar el nodo
+     */
     public void deletePostPosition(int position){
         deleteNode(position + 1);
     }
-    
-    //Print all nodes
+
+    /**
+     * Imprime en consola los elementos de los nodos almacenados en la lista.
+     */
     public void printList(){
         GraphNode aux = first;
         if (isEmpty()){

@@ -8,7 +8,7 @@ package proyecto_1;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Ventana para añadir un nuevo restaurante a la plataforma Samancito Delivery
  * @author Alex
  */
 public class AddRestaurant extends javax.swing.JFrame {
@@ -25,6 +25,7 @@ public class AddRestaurant extends javax.swing.JFrame {
         this.restaurant = null;
         this.menu = null;
         initComponents();
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
     
     public AddRestaurant(DataUpload uploadWindow) {
@@ -41,6 +42,7 @@ public class AddRestaurant extends javax.swing.JFrame {
                 f.changeRoadIntString(id, this.uploadWindow.getInfo().getClients()));
         this.jTextField10.setText(
                 f.changeRoadIntString(id, this.uploadWindow.getInfo().getClients()));
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -310,6 +312,12 @@ public class AddRestaurant extends javax.swing.JFrame {
                         this.uploadWindow.getInfo().getRoutes().addLast(newRoute2);
                         JOptionPane.showMessageDialog(rootPane, "Registro "
                                 + "exitoso");
+                        Functions f = new Functions();
+                        f.writeTXT(this.uploadWindow.getInfo().getRestaurants(), 
+                                this.uploadWindow.getInfo().getClients(), 
+                                this.uploadWindow.getInfo().getOrders(), 
+                                this.uploadWindow.getInfo().getRoutes(), 
+                                this.uploadWindow.getInfo().getPathTXT());
                         this.setVisible(false);
                         this.dispose();
                     }else{

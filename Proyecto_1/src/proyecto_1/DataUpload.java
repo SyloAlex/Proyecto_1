@@ -11,7 +11,8 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
- *
+ * Ventana para cargar un archivo TXT con los datos de la plataforma Samancito 
+ * Delivery
  * @author Alex
  */
 public class DataUpload extends javax.swing.JFrame {

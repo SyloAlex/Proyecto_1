@@ -9,7 +9,10 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Ventana principal de la plataforma Samancito Delivery. Tiene la opcion de 
+ * logear como un cliente, registrar un nuevo cliente, ver y recorrer el grafo,
+ * obtener rutas y distancias mas cortas de las ordenes, eliminar o agregar 
+ * platos, agregar rutas y agregar locales.
  * @author Alex
  */
 public class RolesWindow extends javax.swing.JFrame {
@@ -745,6 +748,12 @@ public class RolesWindow extends javax.swing.JFrame {
                         info.getRoutes().addLast(newRoute2);
                         JOptionPane.showMessageDialog(rootPane, "Registro "
                                 + "Exitoso");
+                        Functions f = new Functions();
+                        f.writeTXT(this.uploadWindow.getInfo().getRestaurants(), 
+                                this.uploadWindow.getInfo().getClients(), 
+                                this.uploadWindow.getInfo().getOrders(), 
+                                this.uploadWindow.getInfo().getRoutes(), 
+                                this.uploadWindow.getInfo().getPathTXT());
                         CreateOrder newOrder = new CreateOrder(this.uploadWindow, id);
                         newOrder.setLocationRelativeTo(null);
                         newOrder.setVisible(true);

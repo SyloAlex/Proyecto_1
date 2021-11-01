@@ -5,56 +5,28 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.PrintWriter;
 
+/**
+ * Clase de metodos y procedimientos de la aplicacion
+ * @author Alex
+ */
 public class Functions {
     
+    /**
+     * Constructor de la clase Functions sin parametros
+     */
     public Functions(){
         
     }
     
-    public void changeRoutesEntrance(RouteList routes, ClientsList clients){
-        RouteNode clientAux = routes.getFirst();
-        for (int i = 0; i < routes.getSize(); i++){
-            String routeString = String.valueOf(clientAux.getEntrance());
-            if (Character.isDigit(routeString.charAt(0))){
-                int routeInt = Integer.parseInt(routeString);
-                clientAux.setEntrance(routeInt - 1);
-            }else{
-                char routeChar = routeString.charAt(0);
-                int routeInt = routeChar;
-                clientAux.setEntrance(routeInt - 65 + clients.getSize());
-            }
-            clientAux = clientAux.getNext();
-        }
-    }
-    
-    public void changeRoutesExits(RouteList routes, ClientsList clients){
-        RouteNode clientAux = routes.getFirst();
-        for (int i = 0; i < routes.getSize(); i++){
-            String routeString = String.valueOf(clientAux.getExit());
-            if (Character.isDigit(routeString.charAt(0))){
-                int routeInt = Integer.parseInt(routeString);
-                clientAux.setExit(routeInt - 1);
-            }else{
-                char routeChar = routeString.charAt(0);
-                int routeInt = routeChar;
-                clientAux.setExit(routeInt - 65 + clients.getSize());
-            }
-            clientAux = clientAux.getNext();
-        }
-    }
-    
-    public RouteList copyRoutes(RouteList original){
-        RouteNode clientAux = original.getFirst();
-        RouteList copy = new RouteList();
-        for (int i = 0; i < original.getSize(); i++){
-            RouteNode newRoute = new RouteNode(clientAux.getEntrance(), clientAux.getExit(),
-            clientAux.getWeight());
-            copy.addLast(newRoute);
-            clientAux = clientAux.getNext();
-        }
-        return copy;
-    }
-    
+    /**
+     * Funcion que transforma el ID de un vertice ingresado en String a ASCII 
+     * para luego transformarlo en el formato necesario. Si es un cliente le 
+     * resta 1 y lo anexa, si es un Restaurant le resta 65 (llevandolo a 
+     * un entero) y suma el tamaño de la lista de clientes.
+     * @param road {Object} ID del vertice a cambiar
+     * @param clients {ClientsList} lista de clientes de la plataforma
+     * @return result {int} ID transpolado para la Matriz de Adyacencia
+     */
     public int changeRoadStringInt(Object road, ClientsList clients){
         String roadString = String.valueOf(road);
         if (Character.isDigit(roadString.charAt(0))){
@@ -67,6 +39,16 @@ public class Functions {
         }
     }
     
+    /**
+     * Funcion que recibe un ID previamente transformado a int y lo devuelve 
+     * a ser un String con el valor que previamente tenia. Si es un cliente le 
+     * suma 1 y lo anexa, si es un Restaurant le suma 65 (llevandolo a 
+     * un entero) y resta el tamaño de la lista de clientes.
+     * @param road {int} ID del vertice transpolado para la matriz de 
+     * adyacencia
+     * @param clients {ClientsList} lista de clientes de la plataforma
+     * @return result {String} ID del vertice a cambiar
+     */
     public String changeRoadIntString(int road, ClientsList clients){
         String result;
         if (road < clients.getSize()){
@@ -77,6 +59,16 @@ public class Functions {
         return result;
     }
     
+    /**
+     * Funcion que llena la Matriz de Adyacencia de Floyd-Warshall y la Matriz 
+     * de caminos con los valores requeridos. La Matriz de Floyd-Warshall la 
+     * llena con los pesos de las rutas, y la Matriz de rutas la llena con la 
+     * salida de la ruta.
+     * @param graph {Matrix} Matriz de Adyacencia de Floyd-Warshall
+     * @param roads {Matrix} Matriz de Adyacencia de caminos
+     * @param routes {RouteList} Lista de rutas de la plataforma
+     * @param clients {ClientsList} Lista de clientes de la plataforma
+     */
     public void fillMatrix(Matrix graph, Matrix roads, RouteList routes, ClientsList clients){
         RouteNode clientAux = routes.getFirst();
         for (int i = 0; i < routes.getSize(); i++){
@@ -90,6 +82,15 @@ public class Functions {
         }
     }
     
+    /**
+     * Lee el archivo TXT contenido en el path proporcionado como argumento. 
+     * Al culminar la lectura, crea el objeto SamanInfo en el cual se almacenan
+     *  las rutas, clientes, restaurantes y ordenes contenidas en el TXT.
+     * @param TXTpath {String} Path del archivo que contiene la informacion de 
+     * la plataforma
+     * @return {SamanInfo} Objeto que contiene toda la informacion de la 
+     * plataforma.
+     */
     public SamanInfo readTXT(String TXTpath){
         String samancitoTXT = "";
         String line;
@@ -184,6 +185,7 @@ public class Functions {
                 infoSaman.setClients(clients);
                 infoSaman.setOrders(orders);
                 infoSaman.setRoutes(routes);
+                infoSaman.setPathTXT(TXTpath);
             }
             return infoSaman;
         }catch (Exception e){
@@ -191,6 +193,17 @@ public class Functions {
         }
     }
     
+    /**
+     * Funcion que recibe todas las listas que contienen la informacion de la 
+     * plataforma y escribe un TXT con dicha informacion de forma organizada
+     *  para luego poder ser leida.
+     * @param restaurants {RestList} Lista de restaurantes de la plataforma
+     * @param clients {ClientsList} Lista de restaurantes de la plataforma
+     * @param orders {OrderList} Lista de restaurantes de la plataforma
+     * @param routes {RouteList} Lista de restaurantes de la plataforma
+     * @param txtPath {String} Path del archivo que contiene la informacion de 
+     * la plataforma
+     */
     public void writeTXT(RestList restaurants, ClientsList clients, 
             OrderList orders, RouteList routes, String txtPath){
         String txtString = "";

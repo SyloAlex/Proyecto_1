@@ -1,5 +1,5 @@
 Restaurantes
-A,Pizpa,Pizza Margarita-Pasticho-Refresco
+A,Pizpa,Pizza Margarita/Pasticho/Refresco
 B,Sótano Siete,Prosciutto Funghi/Pizza Napoletana/Calzone
 C,Avila Burgers,Banquito Burger/Papas Fritas/Aros de Cebolla/Nestea
 D,Buffalo Wings,Papitas Kardashian/Burger Homero/Costillas/Agua

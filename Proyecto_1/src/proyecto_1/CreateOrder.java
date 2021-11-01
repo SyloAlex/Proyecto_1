@@ -10,7 +10,8 @@ import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Ventana para que el cliente agregue una nueva orden en la plataforma 
+ * Samancito Delivery
  * @author Alex
  */
 public class CreateOrder extends javax.swing.JFrame {
@@ -30,7 +31,9 @@ public class CreateOrder extends javax.swing.JFrame {
         this.foodOrder = null;
         this.restaurant = null;
         initComponents();
-        this.jTextArea2.setText(this.upload.getInfo().getRestaurants().restToString());
+        this.jTextArea2.setText(
+                this.upload.getInfo().getRestaurants().restToString());
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
     
     public CreateOrder(DataUpload upload, String clientId) {
@@ -40,7 +43,9 @@ public class CreateOrder extends javax.swing.JFrame {
         this.foodOrder = null;
         this.restaurant = null;
         initComponents();
-        this.jTextArea2.setText(this.upload.getInfo().getRestaurants().restToString());
+        this.jTextArea2.setText(
+                this.upload.getInfo().getRestaurants().restToString());
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
 
     /** This method is called from within the constructor to
@@ -289,6 +294,12 @@ public class CreateOrder extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if (this.order != null){
             this.upload.getInfo().getOrders().addLast(this.order);
+            Functions f = new Functions();
+            f.writeTXT(this.upload.getInfo().getRestaurants(), 
+                        this.upload.getInfo().getClients(), 
+                        this.upload.getInfo().getOrders(), 
+                        this.upload.getInfo().getRoutes(), 
+                        this.upload.getInfo().getPathTXT());
             this.setVisible(false);
             this.dispose();
         }else{
