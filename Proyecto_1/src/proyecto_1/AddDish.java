@@ -62,13 +62,12 @@ public class AddDish extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Samancito Delivery");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, -1, -1));
 
         jLabel3.setText("Paso 1. Busque el restaurant");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
@@ -78,7 +77,7 @@ public class AddDish extends javax.swing.JFrame {
         jTextArea2.setRows(5);
         jScrollPane2.setViewportView(jTextArea2);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 240, 130));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 240, 130));
 
         jLabel5.setText("Paso 2. Ingrese el ID del restaurant");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, -1, -1));
@@ -92,7 +91,7 @@ public class AddDish extends javax.swing.JFrame {
                 jTextField2KeyTyped(evt);
             }
         });
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, 40, 30));
+        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, 40, 30));
 
         jButton3.setText("Seleccionar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -100,12 +99,12 @@ public class AddDish extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 270, -1, 30));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 270, -1, 30));
 
         jLabel8.setText("Nombre del plato:");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, -1, -1));
 
-        jTextField3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField3.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField3ActionPerformed(evt);
@@ -116,7 +115,7 @@ public class AddDish extends javax.swing.JFrame {
                 jTextField3KeyTyped(evt);
             }
         });
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, 140, 30));
+        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 350, 140, 30));
 
         jLabel9.setText("Paso 4.Ingrese el nombre del plato");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, -1, -1));
@@ -129,7 +128,16 @@ public class AddDish extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 400, 90, 40));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 460));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -169,24 +177,32 @@ public class AddDish extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyTyped
-
+        char c = evt.getKeyChar();
+        if (!Character.isAlphabetic(c) && !Character.isDigit(c)){
+            evt.consume();
+        }
     }//GEN-LAST:event_jTextField3KeyTyped
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if (!this.jTextField3.getText().isEmpty()){
-            this.rest.getMenu().addLast(new FoodNode(this.jTextField3.getText()));
-            JOptionPane.showMessageDialog(rootPane, "Registro exitoso");
-            Functions f = new Functions();
-            f.writeTXT(this.uploadWindow.getInfo().getRestaurants(), 
-                    this.uploadWindow.getInfo().getClients(), 
-                    this.uploadWindow.getInfo().getOrders(), 
-                    this.uploadWindow.getInfo().getRoutes(), 
-                    this.uploadWindow.getInfo().getPathTXT());
-            this.setVisible(false);
-            this.dispose();
+        if (this.rest != null){
+            if (!this.jTextField3.getText().isEmpty()){
+                this.rest.getMenu().addLast(new FoodNode(this.jTextField3.getText()));
+                JOptionPane.showMessageDialog(rootPane, "Registro exitoso");
+                Functions f = new Functions();
+                f.writeTXT(this.uploadWindow.getInfo().getRestaurants(), 
+                        this.uploadWindow.getInfo().getClients(), 
+                        this.uploadWindow.getInfo().getOrders(), 
+                        this.uploadWindow.getInfo().getRoutes(), 
+                        this.uploadWindow.getInfo().getPathTXT());
+                this.setVisible(false);
+                this.dispose();
+            }else{
+                JOptionPane.showMessageDialog(rootPane, "Debe ingresar el nombre"
+                        + " del plato");
+            }
         }else{
-            JOptionPane.showMessageDialog(rootPane, "Debe ingresar el nombre"
-                    + "del plato");
+            JOptionPane.showMessageDialog(rootPane, "Debe seleccionar un "
+                    + "restaurant");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

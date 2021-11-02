@@ -177,16 +177,20 @@ public class AddRoad extends javax.swing.JFrame {
 
     private void jTextField9KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField9KeyTyped
         char c = evt.getKeyChar();
-        if (Character.isAlphabetic(c)){
-            if (Character.isLowerCase(c)){
-                evt.consume();
-            }else if (this.jTextField9.getText().length() == 1){
-                evt.consume();
+        if (Character.isAlphabetic(c) || Character.isDigit(c)){
+            if (Character.isAlphabetic(c)){
+                if (Character.isLowerCase(c)){
+                    evt.consume();
+                }else if (this.jTextField9.getText().length() == 1){
+                    evt.consume();
+                }
+            }else{
+                if (this.jTextField9.getText().length() == 2){
+                    evt.consume();
+                }
             }
         }else{
-            if (this.jTextField9.getText().length() == 2){
-                evt.consume();
-            }
+            evt.consume();
         }
     }//GEN-LAST:event_jTextField9KeyTyped
 
@@ -211,16 +215,20 @@ public class AddRoad extends javax.swing.JFrame {
 
     private void jTextField11KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField11KeyTyped
         char c = evt.getKeyChar();
-        if (Character.isAlphabetic(c)){
-            if (Character.isLowerCase(c)){
-                evt.consume();
-            }else if (this.jTextField11.getText().length() == 1){
-                evt.consume();
+        if (Character.isAlphabetic(c) || Character.isDigit(c)){
+            if (Character.isAlphabetic(c)){
+                if (Character.isLowerCase(c)){
+                    evt.consume();
+                }else if (this.jTextField9.getText().length() == 1){
+                    evt.consume();
+                }
+            }else{
+                if (this.jTextField9.getText().length() == 2){
+                    evt.consume();
+                }
             }
         }else{
-            if (this.jTextField11.getText().length() == 2){
-                evt.consume();
-            }
+            evt.consume();
         }
     }//GEN-LAST:event_jTextField11KeyTyped
 

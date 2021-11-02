@@ -197,6 +197,11 @@ public class RolesWindow extends javax.swing.JFrame {
         });
 
         jTextField4.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField4ActionPerformed(evt);
+            }
+        });
         jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextField4KeyTyped(evt);
@@ -706,14 +711,14 @@ public class RolesWindow extends javax.swing.JFrame {
 
     private void jTextField4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyTyped
         char c = evt.getKeyChar();
-        if (Character.isDigit(c)){
+        if (!Character.isAlphabetic(c)){
             evt.consume();
         }
     }//GEN-LAST:event_jTextField4KeyTyped
 
     private void jTextField5KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyTyped
         char c = evt.getKeyChar();
-        if (Character.isDigit(c)){
+        if (!Character.isAlphabetic(c)){
             evt.consume();
         }
     }//GEN-LAST:event_jTextField5KeyTyped
@@ -820,31 +825,39 @@ public class RolesWindow extends javax.swing.JFrame {
 
     private void jTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyTyped
         char c = evt.getKeyChar();
-        if (Character.isAlphabetic(c)){
-            if (Character.isLowerCase(c)){
-                evt.consume();
-            }else if (this.jTextField3.getText().length() == 1){
-                evt.consume();
+        if (Character.isAlphabetic(c) || Character.isDigit(c)){
+            if (Character.isAlphabetic(c)){
+                if (Character.isLowerCase(c)){
+                    evt.consume();
+                }else if (this.jTextField9.getText().length() == 1){
+                    evt.consume();
+                }
+            }else{
+                if (this.jTextField9.getText().length() == 2){
+                    evt.consume();
+                }
             }
         }else{
-            if (this.jTextField3.getText().length() == 2){
-                evt.consume();
-            }
+            evt.consume();
         }
     }//GEN-LAST:event_jTextField3KeyTyped
 
     private void jTextField8KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField8KeyTyped
         char c = evt.getKeyChar();
-        if (Character.isAlphabetic(c)){
-            if (Character.isLowerCase(c)){
-                evt.consume();
-            }else if (this.jTextField8.getText().length() == 1){
-                evt.consume();
+        if (Character.isAlphabetic(c) || Character.isDigit(c)){
+            if (Character.isAlphabetic(c)){
+                if (Character.isLowerCase(c)){
+                    evt.consume();
+                }else if (this.jTextField9.getText().length() == 1){
+                    evt.consume();
+                }
+            }else{
+                if (this.jTextField9.getText().length() == 2){
+                    evt.consume();
+                }
             }
         }else{
-            if (this.jTextField8.getText().length() == 2){
-                evt.consume();
-            }
+            evt.consume();
         }
     }//GEN-LAST:event_jTextField8KeyTyped
 
@@ -875,8 +888,16 @@ public class RolesWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        // TODO add your handling code here:
+        Functions f = new Functions();
+        String BFS = f.graphBFS(this.uploadWindow.getInfo());
+        JOptionPane.showMessageDialog(rootPane, "El recorrido por anchura es: "
+                + BFS);
+        BFS = null;
     }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField4ActionPerformed
 
     /**
      * @param args the command line arguments

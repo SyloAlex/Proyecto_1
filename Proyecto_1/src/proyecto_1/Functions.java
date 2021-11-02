@@ -268,9 +268,77 @@ public class Functions {
             PrintWriter pw = new PrintWriter(txtPath);
             pw.write(txtString);
             pw.close();
-            System.out.println("No me mori");
         }catch (Exception e){
             System.out.println("Me mori");
         }
+    }
+    
+    /**
+     * Funcion que recorre el grafo por anchura. 
+     * @param info
+     * @return
+     */
+    public String graphBFS(SamanInfo info){
+        int n = 0;
+        int a;
+        String result = "";
+        RouteList routes = info.getRoutes();
+        ClientsList clients = info.getClients();
+        RestList restaurants = info.getRestaurants();
+        int vertex = clients.getSize() + restaurants.getSize();
+        StringMatrix adjList = new StringMatrix(vertex, "");
+        BooleanList bools = new BooleanList(vertex);
+        StringGraphList queue = new StringGraphList(0, "");
+        adjList = this.fillAdjList(adjList, routes, clients);
+        bools.getNodeOrdered(n).setNodeName(true);
+        queue.addLast(this.changeRoadIntString(n, clients));
+        
+        while (!queue.isEmpty()){
+            String test = queue.deleteLastReturn().getNodeName();
+            n = this.changeRoadStringInt(test, clients);
+            result += test + "-";
+            for (int i = 0; i < adjList.getList(n).getSize(); i++){
+                a = this.changeRoadStringInt(
+                        adjList.getList(n).getNodeOrdered(i).getNodeName(), clients);
+                if (!bools.getNodeOrdered(a).getNodeName()){
+                    bools.getNodeOrdered(a).setNodeName(true);
+                    queue.addLast(this.changeRoadIntString(a, clients));
+                }
+            }
+        }
+
+        return result.substring(0, result.length() - 1);
+    }
+    
+    /**
+     *
+     * @param adjList
+     * @param routes
+     * @param clients
+     * @return
+     */
+    public StringMatrix fillAdjList(StringMatrix adjList, RouteList routes, 
+            ClientsList clients){
+        RouteNode aux = routes.getFirst();
+        for (int i = 0; i < routes.getSize(); i++){
+            int source = this.changeRoadStringInt(aux.getEntrance(), clients);
+            StringGraphList auxList = adjList.getFirst();
+            for (int j = 0; j < adjList.getSize(); j++){
+                if (j == source){
+                    adjList.getList(j).addLast(String.valueOf(aux.getExit()));
+                    break;
+                }else{
+                    auxList = auxList.getNextList();
+                }
+            }
+            aux = aux.getNext();
+        }
+        StringGraphList aux2 = adjList.getFirst();
+        for (int i = 0; i < adjList.getSize(); i++){
+            aux2.deleteFirst();
+            aux2 = aux2.getNextList();
+        }
+        
+        return adjList;
     }
 }
