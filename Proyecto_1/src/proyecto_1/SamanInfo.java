@@ -103,4 +103,29 @@ public class SamanInfo {
         this.pathTXT = pathTXT;
     }
     
+    /**
+     * Funcion que transforma el nombre y id de locales y clientes a un String
+     *  para hecer display.
+     * @return result {String} que contiene nombre y ID de restaurantes y 
+     * clientes
+     */
+    public String infoToString(){
+        String result = "Restaurants:\n";
+        RestNode aux = this.restaurants.getFirst();
+        for (int i = 0;  i < this.restaurants.getSize(); i++){
+            result += "ID: " + aux.getRestId() + " Nombre: " + 
+                    aux.getRestName() + "\n";
+            aux = aux.getNext();
+        }
+        result += "Clientes:\n";
+        ClientNode auxClient = this.clients.getFirst();
+        for (int j = 0; j < this.clients.getSize(); j++){
+            result += "ID: " + auxClient.getId() + " Nombre: " +
+                    auxClient.getName() + "\n";
+            auxClient = auxClient.getNext();
+        }
+        
+        return result;
+    }
+    
 }

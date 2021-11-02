@@ -84,6 +84,7 @@ public class RolesWindow extends javax.swing.JFrame {
         jTextField11 = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
         jLabel26 = new javax.swing.JLabel();
+        jButton12 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -411,6 +412,23 @@ public class RolesWindow extends javax.swing.JFrame {
         );
 
         jPanel2.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 680, 50));
+
+        jButton12.setBackground(new java.awt.Color(255, 255, 255));
+        jButton12.setText("Ver IDs");
+        jButton12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton12MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton12MouseExited(evt);
+            }
+        });
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 370, -1, 40));
 
         jTabbedPane1.addTab("Clientes", jPanel2);
 
@@ -994,6 +1012,20 @@ public class RolesWindow extends javax.swing.JFrame {
         this.jButton8.setBackground(Color.white);
     }//GEN-LAST:event_jButton8MouseExited
 
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        GetRoutes routesWindow = new GetRoutes(this.uploadWindow);
+        routesWindow.setLocationRelativeTo(null);
+        routesWindow.setVisible(true);
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton12MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton12MouseEntered
+        this.jButton12.setBackground(new Color(255,153,51));
+    }//GEN-LAST:event_jButton12MouseEntered
+
+    private void jButton12MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton12MouseExited
+        this.jButton12.setBackground(Color.white);
+    }//GEN-LAST:event_jButton12MouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -1033,6 +1065,7 @@ public class RolesWindow extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
