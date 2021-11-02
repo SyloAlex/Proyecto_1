@@ -884,7 +884,11 @@ public class RolesWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField9KeyTyped
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
+        Functions f = new Functions();
+        String DFS = f.DFSResult(this.uploadWindow.getInfo());
+        JOptionPane.showMessageDialog(rootPane, "El recorrido por profundidad "
+                + "es: " + DFS);
+        DFS = null;
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed

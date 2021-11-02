@@ -274,9 +274,11 @@ public class Functions {
     }
     
     /**
-     * Funcion que recorre el grafo por anchura. 
-     * @param info
-     * @return
+     * Funcion que recorre el grafo por anchura. Itera por cada nivel del grafo
+     *  y guarda en un String el valor de cada nodo en dicho nivel antes de 
+     * pasar al siguiente
+     * @param info {SamanInfo} Objeto con toda la informacion de la plataforma
+     * @return result {String} ruta recorrida por anchura
      */
     public String graphBFS(SamanInfo info){
         int n = 0;
@@ -294,7 +296,7 @@ public class Functions {
         queue.addLast(this.changeRoadIntString(n, clients));
         
         while (!queue.isEmpty()){
-            String test = queue.deleteLastReturn().getNodeName();
+            String test = queue.deleteFirstReturn().getNodeName();
             n = this.changeRoadStringInt(test, clients);
             result += test + "-";
             for (int i = 0; i < adjList.getList(n).getSize(); i++){
@@ -311,11 +313,60 @@ public class Functions {
     }
     
     /**
-     *
-     * @param adjList
-     * @param routes
-     * @param clients
-     * @return
+     * Funcion que recorre por profundidad el grafo. Itera por cada hijo del 
+     * nodo mientras almacena su informacion hasta llegar a un nodo terminal 
+     * y retornar para continuar por otra rama.
+     * @param info {SamanInfo} Objeto con toda la informacion de la plataforma
+     * @param result {String} recorrido vacio
+     * @param bools {BooleanList) lista de booleanos para verificar si el nodo
+     *  fue o no recorrido
+     * @param vertex (int) vertice inicial del recorrido
+     * @param adjList {StringMAtrix} lista de adyacencia del grafo a recorrer
+     * @return result {string} ruta recorrida por profundidad
+     */
+    public String graphDFS(SamanInfo info, String result, 
+            BooleanList bools, int vertex, StringMatrix adjList){
+        
+        bools.getNodeOrdered(vertex).setNodeName(true);
+        result += this.changeRoadIntString(vertex, info.getClients()) + "-";
+        int a;
+        for (int i = 0; i < adjList.getList(vertex).getSize(); i++){
+            String test = adjList.getList(vertex).getNodeOrdered(i).getNodeName();
+            a = this.changeRoadStringInt(test, info.getClients());
+            if (!bools.getNodeOrdered(a).getNodeName()){
+                result = this.graphDFS(info, result, bools, a, adjList);
+            }
+        }
+        
+        return result;
+    }
+    
+    /**
+     * Inicializador de las variable del recorrido por profundidad
+     * @param info {SamanInfo} Objeto con toda la informacion de la plataforma
+     * @return finalResult {String} recorrido completo por profundidad
+     */
+    public String DFSResult(SamanInfo info){
+        String result = "";
+        int vertex = info.getClients().getSize() + 
+                info.getRestaurants().getSize();
+        StringMatrix adjList = new StringMatrix(vertex, "");
+        adjList = this.fillAdjList(adjList, info.getRoutes(), 
+                info.getClients());
+        BooleanList bools = new BooleanList(vertex);
+        String finalResult = this.graphDFS(info, result, bools, 0, adjList);
+        
+        return finalResult.substring(0, finalResult.length() - 1);
+    }
+    
+    /**
+     * Funcion para llenar la lista adyacente con los nodos salida de cada ruta
+     *  y su entrada
+     * @param adjList {StringMatrix} con tamaño igual a los vertices del grafo
+     * @param routes {RouteList} lista de rutas de la plataforma
+     * @param clients {ClientsList} lista de clientes de la plataforma
+     * @return {StringMatrix} Lista de adyacencia llena con las rutas y 
+     * vertices
      */
     public StringMatrix fillAdjList(StringMatrix adjList, RouteList routes, 
             ClientsList clients){
