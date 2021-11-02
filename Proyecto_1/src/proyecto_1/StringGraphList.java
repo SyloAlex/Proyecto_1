@@ -171,15 +171,14 @@ public class StringGraphList {
      * Elimina el ultimo nodo y lo retorna
      * @return {StringNode} ultimo nodo de la lista
      */
-    public StringNode deleteLastReturn(){
+    public StringNode deleteFirstReturn(){
         StringNode aux = null;
         if (isEmpty()){
             System.out.println("No se puede eliminar, la lista esta vacia");
         }else{
             if (this.size != 1){
-                aux = last;
-                last = getNodeOrdered(size - 2);
-                last.setNext(null);
+                aux = first;
+                first = first.getNext();
                 size = size - 1;  
             }else{
                 aux = last;
