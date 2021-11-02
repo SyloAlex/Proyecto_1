@@ -141,6 +141,11 @@ public class CreateOrder extends javax.swing.JFrame {
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 100, -1, -1));
 
         jTextField3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
         jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextField3KeyTyped(evt);
@@ -270,6 +275,8 @@ public class CreateOrder extends javax.swing.JFrame {
         char c = evt.getKeyChar();
         if (!Character.isDigit(c)){
             evt.consume();
+        }else if (this.jTextField3.getText().length() == 2){
+                evt.consume();
         }
     }//GEN-LAST:event_jTextField3KeyTyped
 
@@ -277,36 +284,52 @@ public class CreateOrder extends javax.swing.JFrame {
         char c = evt.getKeyChar();
         if (!Character.isDigit(c)){
             evt.consume();
+        }else if (this.jTextField1.getText().length() == 2){
+                evt.consume();
         }
     }//GEN-LAST:event_jTextField1KeyTyped
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        if (this.order == null){
-            this.order = new OrderNode(
-                this.jTextField2.getText().toUpperCase(), this.clientId);
-            this.jTextArea1.setText(this.order.displayOrder());
+        if (this.restaurant != null){   
+            if (this.order == null){
+                this.order = new OrderNode(
+                    this.jTextField2.getText().toUpperCase(), this.clientId);
+                this.jTextArea1.setText(this.order.displayOrder());
+            }else{
+                JOptionPane.showMessageDialog(rootPane, "Ya tiene una orden en "
+                        + "proceso");
+            }
         }else{
-            JOptionPane.showMessageDialog(rootPane, "Ya tiene una orden en "
-                    + "proceso");
+            JOptionPane.showMessageDialog(rootPane, "Debe seleccionar un "
+                    + "restaurant primero");
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if (this.order != null){
-            this.upload.getInfo().getOrders().addLast(this.order);
-            Functions f = new Functions();
-            f.writeTXT(this.upload.getInfo().getRestaurants(), 
-                        this.upload.getInfo().getClients(), 
-                        this.upload.getInfo().getOrders(), 
-                        this.upload.getInfo().getRoutes(), 
-                        this.upload.getInfo().getPathTXT());
-            this.setVisible(false);
-            this.dispose();
+            if (this.order.getOrder() != null){
+                this.upload.getInfo().getOrders().addLast(this.order);
+                Functions f = new Functions();
+                f.writeTXT(this.upload.getInfo().getRestaurants(), 
+                            this.upload.getInfo().getClients(), 
+                            this.upload.getInfo().getOrders(), 
+                            this.upload.getInfo().getRoutes(), 
+                            this.upload.getInfo().getPathTXT());
+                this.setVisible(false);
+                this.dispose();
+            }else{
+                JOptionPane.showMessageDialog(rootPane, "Debe seleccionar los "
+                        + "platos del restaurant");
+            }
         }else{
             JOptionPane.showMessageDialog(rootPane, "De rellenar los datos"
                     + " indicados para realizar un pedido");
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3ActionPerformed
 
     /**
      * @param args the command line arguments
