@@ -397,7 +397,8 @@ public class AddRestaurant extends javax.swing.JFrame {
                                 + "realizamos envios a lugares tan lejanos");
                     }else{
                         if (!route1en.equals(route1ex) && !route2en.equals(route2ex)){
-                            if (this.restaurant != null){
+                            if (this.restaurant != null && 
+                                    this.restaurant.getMenu().getFirst() != null){
                                 this.uploadWindow.getInfo().getRestaurants().addLast(this.restaurant);
                                 RouteNode newRoute1 = new RouteNode(route1en, 
                                 route1ex, route1w);
