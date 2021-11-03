@@ -361,10 +361,15 @@ public class AddRestaurant extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Debe ingresar un nombre "
                     + "para el plato");
         }else{
-            this.restaurant.getMenu().addLast(
+            if (this.restaurant != null){
+                this.restaurant.getMenu().addLast(
                     new FoodNode(this.jTextField4.getText()));
-            this.jTextArea2.setText(this.restaurant.restToString());
-            this.jTextField4.setText("");
+                this.jTextArea2.setText(this.restaurant.restToString());
+                this.jTextField4.setText("");
+            }else{
+                JOptionPane.showMessageDialog(rootPane, "Debe seleccionar un "
+                        + "restaurant");
+            }
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
