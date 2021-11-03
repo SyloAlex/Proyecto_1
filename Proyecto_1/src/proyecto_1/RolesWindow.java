@@ -146,6 +146,11 @@ public class RolesWindow extends javax.swing.JFrame {
                 jButton10MouseExited(evt);
             }
         });
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, 290, 69));
 
         jButton11.setBackground(new java.awt.Color(255, 255, 255));
@@ -1025,6 +1030,12 @@ public class RolesWindow extends javax.swing.JFrame {
     private void jButton12MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton12MouseExited
         this.jButton12.setBackground(Color.white);
     }//GEN-LAST:event_jButton12MouseExited
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        ShowGraph graphWindow = new ShowGraph(this.uploadWindow);
+        graphWindow.setLocationRelativeTo(null);
+        graphWindow.setVisible(true);
+    }//GEN-LAST:event_jButton10ActionPerformed
 
     /**
      * @param args the command line arguments
