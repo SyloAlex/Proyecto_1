@@ -737,14 +737,14 @@ public class RolesWindow extends javax.swing.JFrame {
 
     private void jTextField4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyTyped
         char c = evt.getKeyChar();
-        if (!Character.isAlphabetic(c)){
+        if (!Character.isAlphabetic(c) && !Character.isWhitespace(c)){
             evt.consume();
         }
     }//GEN-LAST:event_jTextField4KeyTyped
 
     private void jTextField5KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyTyped
         char c = evt.getKeyChar();
-        if (!Character.isAlphabetic(c)){
+        if (!Character.isAlphabetic(c) && !Character.isWhitespace(c)){
             evt.consume();
         }
     }//GEN-LAST:event_jTextField5KeyTyped

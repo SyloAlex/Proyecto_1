@@ -322,14 +322,16 @@ public class AddRestaurant extends javax.swing.JFrame {
 
     private void jTextField4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyTyped
         char c = evt.getKeyChar();
-        if (!Character.isAlphabetic(c) && !Character.isDigit(c)){
+        if (!Character.isAlphabetic(c) && !Character.isDigit(c) && 
+                !Character.isWhitespace(c)){
             evt.consume();
         }
     }//GEN-LAST:event_jTextField4KeyTyped
 
     private void jTextField5KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyTyped
         char c = evt.getKeyChar();
-        if (!Character.isAlphabetic(c) && !Character.isDigit(c)){
+        if (!Character.isAlphabetic(c) && !Character.isDigit(c) && 
+                !Character.isWhitespace(c)){
             evt.consume();
         }
     }//GEN-LAST:event_jTextField5KeyTyped
@@ -362,58 +364,69 @@ public class AddRestaurant extends javax.swing.JFrame {
             this.restaurant.getMenu().addLast(
                     new FoodNode(this.jTextField4.getText()));
             this.jTextArea2.setText(this.restaurant.restToString());
+            this.jTextField4.setText("");
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if (this.jTextField5.getText().isEmpty() || this.jTextField4.getText().isEmpty() || this.jTextArea2.getText().isEmpty() || this.jTextField9.getText().isEmpty() || this.jTextField10.getText().isEmpty() || this.jTextField8.getText().isEmpty() || this.jTextField11.getText().isEmpty() || this.jTextField12.getText().isEmpty() || this.jTextField13.getText().isEmpty()){
-            JOptionPane.showMessageDialog(rootPane, "Debe completar todos los "
-                    + "campos vacíos");
+        if (this.restaurant == null){
+            JOptionPane.showMessageDialog(rootPane, "Debe ingresar un nombre "
+                    + "para el local y un menu de platillos");
         }else{
-            String route1en = this.jTextField9.getText();
-            String route1ex = this.jTextField10.getText();
-            int route1w = Integer.parseInt(this.jTextField11.getText());
-            String route2en = this.jTextField8.getText();
-            String route2ex = this.jTextField13.getText();
-            int route2w = Integer.parseInt(this.jTextField12.getText());
-            if (this.uploadWindow.getInfo().getRoutes().searchEntrance(route1en)
-                    && this.uploadWindow.getInfo().getRoutes().searchExit(route2ex)){
-                if (route1w > 50 || route1w < 0 || route2w > 50 || route2w < 0){
-                    JOptionPane.showMessageDialog(rootPane, "Por los momentos no "
-                            + "realizamos envios a lugares tan lejanos");
-                }else{
-                    if (!route1en.equals(route1ex) && !route2en.equals(route2ex)){
-                        if (this.restaurant != null){
-                            this.uploadWindow.getInfo().getRestaurants().addLast(this.restaurant);
-                            RouteNode newRoute1 = new RouteNode(route1en, 
-                            route1ex, route1w);
-                            RouteNode newRoute2 = new RouteNode(route2en, 
-                                    route2ex, route2w);
-                            this.uploadWindow.getInfo().getRoutes().addLast(newRoute1);
-                            this.uploadWindow.getInfo().getRoutes().addLast(newRoute2);
-                            JOptionPane.showMessageDialog(rootPane, "Registro "
-                                    + "exitoso");
-                            Functions f = new Functions();
-                            f.writeTXT(this.uploadWindow.getInfo().getRestaurants(), 
-                                    this.uploadWindow.getInfo().getClients(), 
-                                    this.uploadWindow.getInfo().getOrders(), 
-                                    this.uploadWindow.getInfo().getRoutes(), 
-                                    this.uploadWindow.getInfo().getPathTXT());
-                            this.setVisible(false);
-                            this.dispose();
-                        }else{
-                            JOptionPane.showMessageDialog(rootPane, "Debe "
-                                    + "proporcionar los datos del local y "
-                                    + "sus rutas para finalizar el resgitro");
-                        }
+            if (!this.jTextField9.getText().isEmpty() &&
+                    !this.jTextField10.getText().isEmpty() &&
+                    !this.jTextField11.getText().isEmpty() &&
+                    !this.jTextField8.getText().isEmpty() &&
+                    !this.jTextField13.getText().isEmpty() &&
+                    !this.jTextField12.getText().isEmpty()){
+                String route1en = this.jTextField9.getText();
+                String route1ex = this.jTextField10.getText();
+                int route1w = Integer.parseInt(this.jTextField11.getText());
+                String route2en = this.jTextField8.getText();
+                String route2ex = this.jTextField13.getText();
+                int route2w = Integer.parseInt(this.jTextField12.getText());
+                if (this.uploadWindow.getInfo().getRoutes().searchEntrance(route1en)
+                        && this.uploadWindow.getInfo().getRoutes().searchExit(route2ex)){
+                    if (route1w > 50 || route1w < 0 || route2w > 50 || route2w < 0){
+                        JOptionPane.showMessageDialog(rootPane, "Por los momentos no "
+                                + "realizamos envios a lugares tan lejanos");
                     }else{
-                        JOptionPane.showMessageDialog(rootPane, "Las entradas y "
-                                + "salidas de las rutas no deben ser iguales");
+                        if (!route1en.equals(route1ex) && !route2en.equals(route2ex)){
+                            if (this.restaurant != null){
+                                this.uploadWindow.getInfo().getRestaurants().addLast(this.restaurant);
+                                RouteNode newRoute1 = new RouteNode(route1en, 
+                                route1ex, route1w);
+                                RouteNode newRoute2 = new RouteNode(route2en, 
+                                        route2ex, route2w);
+                                this.uploadWindow.getInfo().getRoutes().addLast(newRoute1);
+                                this.uploadWindow.getInfo().getRoutes().addLast(newRoute2);
+                                JOptionPane.showMessageDialog(rootPane, "Registro "
+                                        + "exitoso");
+                                Functions f = new Functions();
+                                f.writeTXT(this.uploadWindow.getInfo().getRestaurants(), 
+                                        this.uploadWindow.getInfo().getClients(), 
+                                        this.uploadWindow.getInfo().getOrders(), 
+                                        this.uploadWindow.getInfo().getRoutes(), 
+                                        this.uploadWindow.getInfo().getPathTXT());
+                                this.setVisible(false);
+                                this.dispose();
+                            }else{
+                                JOptionPane.showMessageDialog(rootPane, "Debe "
+                                        + "proporcionar los datos del local y "
+                                        + "sus rutas para finalizar el resgitro");
+                            }
+                        }else{
+                            JOptionPane.showMessageDialog(rootPane, "Las entradas y "
+                                    + "salidas de las rutas no deben ser iguales");
+                        }
                     }
+                }else{
+                    JOptionPane.showMessageDialog(rootPane, "Las rutas ingresadas no "
+                            + "son validas");
                 }
             }else{
-                JOptionPane.showMessageDialog(rootPane, "Las rutas ingresadas no "
-                        + "son validas");
+                JOptionPane.showMessageDialog(rootPane, "Debe rellenar los "
+                        + "campos de las rutas");
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed

@@ -4,6 +4,7 @@ B,Sótano Siete,Prosciutto Funghi/Pizza Napoletana/Calzone
 C,Avila Burgers,Banquito Burger/Papas Fritas/Aros de Cebolla/Nestea
 D,Buffalo Wings,Papitas Kardashian/Burger Homero/Costillas/Agua
 E,Holy Chicken,Holy Chicken/Holy Tempeh/Holy Slaw/Holy Chicken Tenders
+F,Solar del Este,Arepa/Cochino/Cachapa/Jugo/Refresco
 Clientes
 1,Pepe,Gónzales,234354
 2,Stephania,Cominos,24574354
@@ -12,12 +13,14 @@ Clientes
 5,Rosa,Mosa,574543
 6,Eduardo,Petardo,4326534
 7,Enrique,Manrique,434543
+8,Alejandro,Mena,20616375
 Pedidos
 3,A,2-Pizza Margarita/1-Pasticho
 6,E,5-Holy Tempeh/1-Holy Chicken Tenders
 1,C,9-Banquito Burger/6-Aros de Cebolla
 4,B,3-Prosciutto Funghi
 7,D,4-Burger Homero/1-Costillas
+8,F,1-Cochino/1-Refresco
 Rutas
 A,1,3
 A,2,2
@@ -39,5 +42,7 @@ D,6,5
 6,C,6
 E,1,1
 E,A,1
-6,F,2
-F,C,3
+4,F,5
+F,B,7
+A,8,2
+8,E,4
