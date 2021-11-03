@@ -12,12 +12,12 @@ e. Seleccionar rol de usuario: En la ventana inicial del sistema se debe poder s
   - Cliente: Pueden registrarse en el sistema y seleccionar el local donde desean hacer su pedido, junto con los platos que quieran del mismo. 
   - Driver: Pueden visualizar las órdenes que han realizado los clientes y el sistema les debe mostrar la ruta ideal para el despacho.  
   - Administrador: Encargado de añadir locales y caminos en el sistema, con sus  respectivos menús. 
-### Cliente
+### 2. Cliente
 a. Nuevo cliente:  Para el registro se solicitan los siguientes datos: nombre, apellido, cédula, dirección. Para la dirección debe seleccionar dos nodos, indicando sus respectivas distancias (elección del usuario). 
 b. Ordenar: A la hora de realizar una orden, el usuario deberá seleccionar el número de cliente correspondiente y el restaurante en el cual desea ordenar. Posteriormente se mostrará el menú y se procederá a seleccionar los platos deseados y la cantidad de los mismos. Finalmente, al confirmar toda la información el pedido se añadirá a la lista de entregas pendientes.
-### Driver
+### 3. Driver
 a. Realizar entrega: Al seleccionar la opción de driver, el usuario podrá realizar la entrega. Esta opción debe mostrar la lista de pedidos pendientes; el driver seleccionará el pedido que desea entregar y se generará la ruta más corta para que el driver despache la orden. Para calcular la ruta más corta se emplearán los algoritmos de Dijkstra y Floyd-Warshall.
-### Administrador
+### 4. Administrador
 a. Agregar nuevos locales al sistema: Al ingresar como administrador al sistema, se podrán agregar nuevas empresas que utilizarán los servicios de Samancito Delivery. Dicha empresa debe tener su respectivo menú, es decir, una lista de platos. Además, los locales deben anexarse al grafo seleccionando dos nodos y agregando sus respectivas distancias.
 b. Agregar nuevo camino: El administrador podrá hacer más caminos en el grafo, para esto debe seleccionar los nodos que serán unidos y el tamaño de la arista que los conecta.
 c. Agregar platos: Un usuario con el rol de administrador será capaz de agregar nuevos platillos al menú de un restaurante, para esto seleccionará el restaurante y escribirá el nombre del nuevo plato
