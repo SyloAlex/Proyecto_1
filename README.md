@@ -1,6 +1,6 @@
 # Proyecto de Samancito Delivery
 ## Problema
-	Ante el auge de los servicios de entregas originado por la cuarentena, un grupo de estudiantes de la Unimet decidió crear una aplicación de delivery. Sin embargo, la competencia contra otras aplicaciones como “Pedidos Ya” y “Yummy” es muy dura.
+Ante el auge de los servicios de entregas originado por la cuarentena, un grupo de estudiantes de la Unimet decidió crear una aplicación de delivery. Sin embargo, la competencia contra otras aplicaciones como “Pedidos Ya” y “Yummy” es muy dura.
 Los emprendedores unimetanos vieron una oportunidad de mercado al percatarse que los algoritmos de estas empresas son sumamente ineficientes. Gracias a su conocimiento sistémico decidieron contratarlos a ustedes, especialistas en grafos, para generar un sistema que calcule la ruta más corta entre distintos puntos para optimizar los tiempos de entrega y reducir los gastos de gasolina. La naturaleza del problema se puede representar a través de un grafo ponderado y dirigido.
 Requerimientos funcionales
 ### 1.  General
