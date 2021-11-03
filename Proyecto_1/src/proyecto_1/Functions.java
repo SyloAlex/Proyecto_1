@@ -97,9 +97,7 @@ public class Functions {
         SamanInfo infoSaman = new SamanInfo();
         File file = new File(TXTpath);
         try{
-            if (!file.exists()){
-                file.createNewFile();
-            }else{
+            if (file.exists()){
                 FileReader fr = new FileReader(file);
                 BufferedReader br = new BufferedReader(fr);
                 while ((line = br.readLine()) != null){
