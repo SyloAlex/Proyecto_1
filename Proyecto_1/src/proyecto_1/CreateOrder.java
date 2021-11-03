@@ -278,15 +278,24 @@ public class CreateOrder extends javax.swing.JFrame {
                     int foodID = Integer.parseInt(this.jTextField3.getText());
                     int foodQuantity = Integer.parseInt(this.jTextField1.getText());
                     String foodName = this.restaurant.searchFoodWithID(foodID);
-                    FoodNode newFood = new FoodNode(foodName, foodQuantity);
-                    if (this.order.getOrder() == null){
-                        FoodList newList = new FoodList();
-                        newList.addLast(newFood);
-                        this.order.setOrder(newList);
-                        this.jTextArea1.setText(this.order.displayOrder());
+                    if (foodName.equals("")){
+                        JOptionPane.showMessageDialog(rootPane, "El ID "
+                                + "ingresado es invalido");
                     }else{
-                        this.order.getOrder().addLast(newFood);
-                        this.jTextArea1.setText(this.order.displayOrder());
+                        FoodNode newFood = new FoodNode(foodName, foodQuantity);
+                        if (this.order.getOrder() == null){
+                            FoodList newList = new FoodList();
+                            newList.addLast(newFood);
+                            this.order.setOrder(newList);
+                            this.jTextArea1.setText(this.order.displayOrder());
+                            this.jTextField1.setText("");
+                            this.jTextField3.setText("");
+                        }else{
+                            this.order.getOrder().addLast(newFood);
+                            this.jTextArea1.setText(this.order.displayOrder());
+                            this.jTextField1.setText("");
+                            this.jTextField3.setText("");
+                        }
                     }
                 }else{
                     JOptionPane.showMessageDialog(rootPane, "Debe rellenar los "
@@ -297,8 +306,8 @@ public class CreateOrder extends javax.swing.JFrame {
                         + "restaurant de la lista");
             }
         }catch (Exception e){
-            JOptionPane.showMessageDialog(rootPane, "El ID ingresado no "
-                    + "concuerda con los platos en el menu");
+            JOptionPane.showMessageDialog(rootPane, "Debe rellenar los "
+                    + "campos solicitados");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -319,12 +328,17 @@ public class CreateOrder extends javax.swing.JFrame {
         SamanInfo info = this.upload.getInfo();
         String restID = this.jTextField2.getText().toUpperCase();
         if (!restID.isEmpty()){
-            if (info.getRestaurants().searchRestID(restID)){
-                this.jTextArea3.setText(info.getRestaurants().foodToString(restID));
-                this.restaurant = info.getRestaurants().getRestaurant(restID);
+            if (this.order == null){
+                if (info.getRestaurants().searchRestID(restID)){
+                    this.jTextArea3.setText(info.getRestaurants().foodToString(restID));
+                    this.restaurant = info.getRestaurants().getRestaurant(restID);
+                }else{
+                    JOptionPane.showMessageDialog(rootPane, "El ID ingresado no "
+                            + "existe en nuestra base de datos");
+                }
             }else{
-                JOptionPane.showMessageDialog(rootPane, "El ID ingresado no "
-                        + "existe en nuestra base de datos");
+                JOptionPane.showMessageDialog(rootPane, "Ya tiene una orden en "
+                        + "proceso");
             }
         }else{
             JOptionPane.showMessageDialog(rootPane, "Debe ingresar el ID de "

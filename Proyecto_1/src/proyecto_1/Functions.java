@@ -97,9 +97,7 @@ public class Functions {
         SamanInfo infoSaman = new SamanInfo();
         File file = new File(TXTpath);
         try{
-            if (!file.exists()){
-                file.createNewFile();
-            }else{
+            if (file.exists()){
                 FileReader fr = new FileReader(file);
                 BufferedReader br = new BufferedReader(fr);
                 while ((line = br.readLine()) != null){
@@ -391,5 +389,34 @@ public class Functions {
         }
         
         return adjList;
+    }
+    
+    /**
+     * Funcion para revisar todas las rutas mas cortas entre los restaurantes
+     *  y retornar un String con la ruta mas corta y la distancia.
+     * @param info {SamanInfo} informacion de toda la plataforma
+     * @param id {String} ID del restaurante.
+     * @return result {String} que contiene las rutas mas cortas hasta todos 
+     * los restaurantes y la distancia.
+     */
+    public String getAllRoutes(SamanInfo info, String id){
+        String result = "";
+        RestList restaurants = info.getRestaurants();
+        RestNode aux = restaurants.getFirst();
+        DijkstraAlg d = new DijkstraAlg();
+        for (int i = 0; i < restaurants.getSize(); i++){
+            if (!id.equals(aux.getRestId())){
+                result += "Ruta al restaurant " + aux.getRestName() + ":\n";
+                PathNode pathRes = d.runAlgorithm(id, 
+                        info.getRoutes(), aux.getRestId());
+                result += pathRes.vertexesToString() + "\n";
+                result += "Distancia: " + pathRes.getDistance() + "\n\n";
+                aux = aux.getNext();
+            }else{
+                aux = aux.getNext();
+            }
+        }
+        
+        return result;
     }
 }

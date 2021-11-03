@@ -108,7 +108,7 @@ public class Matrix {
     public void createPath(int entrance, int exit, int num){
         GraphList aux = getFirst();
         if (exit >= size || exit < 0 || entrance >= size || entrance < 0){
-            System.out.println("La lista no tiene la posicion indicada");
+            aux = aux;
         }else{
             for (int i = 0; i < size; i++){
                 if (i == entrance){

@@ -221,7 +221,8 @@ public class AddDish extends javax.swing.JFrame {
 
     private void jTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyTyped
         char c = evt.getKeyChar();
-        if (!Character.isAlphabetic(c) && !Character.isDigit(c)){
+        if (!Character.isAlphabetic(c) && !Character.isDigit(c) &&
+                !Character.isWhitespace(c)){
             evt.consume();
         }
     }//GEN-LAST:event_jTextField3KeyTyped

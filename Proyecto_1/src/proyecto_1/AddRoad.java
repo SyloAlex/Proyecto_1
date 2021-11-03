@@ -246,39 +246,44 @@ public class AddRoad extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField11KeyTyped
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String route1en = this.jTextField9.getText();
-        String route1ex = this.jTextField11.getText();
-        int route1w = Integer.parseInt(this.jTextField10.getText());
-        if (this.uploadWindow.getInfo().getRoutes().searchEntrance(route1en)
-                && this.uploadWindow.getInfo().getRoutes().searchExit(route1ex)){
-            if (route1w > 50 || route1w < 0){
-                JOptionPane.showMessageDialog(rootPane, "Por los momentos no "
-                        + "realizamos envios a lugares tan lejanos");
-            }else{
-                if (!route1en.equals(route1ex)){
-                    if (!this.uploadWindow.getInfo().getRoutes().checkRoute(route1en, route1ex)){
-                        RouteNode newRoute1 = new RouteNode(route1en, 
-                            route1ex, route1w);
-                        this.uploadWindow.getInfo().getRoutes().addLast(newRoute1);
-                        JOptionPane.showMessageDialog(rootPane, "Registro de Ruta "
-                                + "exitoso");
-                        Functions f = new Functions();
-                        f.writeTXT(this.uploadWindow.getInfo().getRestaurants(), 
-                                this.uploadWindow.getInfo().getClients(), 
-                                this.uploadWindow.getInfo().getOrders(), 
-                                this.uploadWindow.getInfo().getRoutes(), 
-                                this.uploadWindow.getInfo().getPathTXT());
-                        this.setVisible(false);
-                        this.dispose();
-                    }else{
-                        JOptionPane.showMessageDialog(rootPane, "La ruta "
-                                + "ingresada ya existe");
+        if (this.jTextField9.getText().isEmpty() || this.jTextField10.getText().isEmpty() || this.jTextField11.getText().isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "Debe llenar los 3 recuadros "
+                    + "para crear una nueva ruta");
+        }else{
+            String route1en = this.jTextField9.getText();
+            String route1ex = this.jTextField11.getText();
+            int route1w = Integer.parseInt(this.jTextField10.getText());
+            if (this.uploadWindow.getInfo().getRoutes().searchEntrance(route1en)
+                    && this.uploadWindow.getInfo().getRoutes().searchExit(route1ex)){
+                if (route1w > 50 || route1w < 0){
+                    JOptionPane.showMessageDialog(rootPane, "Por los momentos no "
+                            + "realizamos envios a lugares tan lejanos");
+                }else{
+                    if (!route1en.equals(route1ex)){
+                        if (!this.uploadWindow.getInfo().getRoutes().checkRoute(route1en, route1ex)){
+                            RouteNode newRoute1 = new RouteNode(route1en, 
+                                route1ex, route1w);
+                            this.uploadWindow.getInfo().getRoutes().addLast(newRoute1);
+                            JOptionPane.showMessageDialog(rootPane, "Registro de Ruta "
+                                    + "exitoso");
+                            Functions f = new Functions();
+                            f.writeTXT(this.uploadWindow.getInfo().getRestaurants(), 
+                                    this.uploadWindow.getInfo().getClients(), 
+                                    this.uploadWindow.getInfo().getOrders(), 
+                                    this.uploadWindow.getInfo().getRoutes(), 
+                                    this.uploadWindow.getInfo().getPathTXT());
+                            this.setVisible(false);
+                            this.dispose();
+                        }else{
+                            JOptionPane.showMessageDialog(rootPane, "La ruta "
+                                    + "ingresada ya existe");
+                        }
                     }
                 }
+            }else{
+                JOptionPane.showMessageDialog(rootPane, "La ruta seleccionada no "
+                        + "es valida");
             }
-        }else{
-            JOptionPane.showMessageDialog(rootPane, "La ruta seleccionada no "
-                    + "es valida");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

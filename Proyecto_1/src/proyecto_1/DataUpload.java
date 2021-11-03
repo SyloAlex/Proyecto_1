@@ -209,7 +209,15 @@ public class DataUpload extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "El archivo cargado no "
                         + "cumple con los requerimientos de la plataforma."
                         + "Se utilizara el TXT por defecto de la plataforma");
-                setInfo(f.readTXT("test\\samancito.txt"));
+                this.setInfo(f.readTXT("test\\samancito.txt"));
+            }else if (this.info.getClients() == null || 
+                    this.info.getOrders() == null || 
+                    this.info.getRoutes() == null || 
+                    this.info.getOrders() == null){
+                JOptionPane.showMessageDialog(rootPane, "El archivo cargado no "
+                        + "cumple con los requerimientos de la plataforma."
+                        + "Se utilizara el TXT por defecto de la plataforma");
+                this.setInfo(f.readTXT("test\\samancito.txt"));
             }
             RolesWindow roles = new RolesWindow(this);
             roles.setLocationRelativeTo(null);
